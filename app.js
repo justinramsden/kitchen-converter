@@ -154,13 +154,23 @@
     });
     document.addEventListener('focusout', function () { hideTimer = setTimeout(function () { bar.hidden = true; }, 150); });
     if (vv) { vv.addEventListener('resize', place); vv.addEventListener('scroll', place); }
-    bar.addEventListener('pointerdown', function (e) { e.preventDefault(); }); // keep the keyboard open
-    bar.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b || !field) return;
+    function insert(b) {
+      if (!field) return;
       var s = field.selectionStart == null ? field.value.length : field.selectionStart, en = field.selectionEnd == null ? s : field.selectionEnd;
       field.setRangeText(b.dataset.f, s, en, 'end');
       field.dispatchEvent(new Event('input', { bubbles: true }));
-      field.focus();
+      if (document.activeElement !== field) field.focus();
+    }
+    // Same pattern as Fast_Conversion's extra keys: act on touch and never take focus, so the keyboard stays up.
+    var touched = 0;
+    bar.addEventListener('touchstart', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      e.preventDefault(); touched = Date.now(); insert(b);
+    }, { passive: false });
+    bar.addEventListener('mousedown', function (e) { if (e.target.closest('button')) e.preventDefault(); });
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (Date.now() - touched > 800) insert(b);
     });
   }
 
