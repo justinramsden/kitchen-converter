@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#f2c92e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Kitchen converter</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="band">
+  <input id="line" class="line" type="text" inputmode="text" placeholder="2 c flour · 350f · gas 4"
+    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"
+    aria-label="Type any amount, ingredient or oven temperature">
+  <div id="out" class="res" aria-live="polite"></div>
+</header>
+
+<main>
+  <section id="pins" class="pins" aria-label="Pinned conversions"></section>
+  <p class="hint">Tap a result to copy it. Long-press a result to pin it, or a pinned result to unpin it.</p>
+  <p id="err" class="err" hidden></p>
+</main>
+
+<div id="fracbar" class="fracbar" hidden aria-label="Fractions">
+  <button type="button" data-f="½">½</button><button type="button" data-f="⅓">⅓</button><button type="button" data-f="¼">¼</button><button type="button" data-f="⅔">⅔</button><button type="button" data-f="¾">¾</button><button type="button" data-f="⅛">⅛</button>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="oven.js"></script>
+<script src="kitchen.js"></script>
+<script src="parse.js"></script>
+<script src="answer.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

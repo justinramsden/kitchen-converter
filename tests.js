@@ -79,10 +79,10 @@
       call: "K.toGrams(1, 'cup_us', 'flour_ap', { convention: 'se_128' })", checks: [{ dp: 0, want: 128 }, { dp: 1, want: 127.6 }] },
     { group: 'flour', id: 'F10', input: '3 cup_us flour_bread, brm_144', expect: '432 g', source: 'brm_chart',
       call: "K.toGrams(3, 'cup_us', 'flour_bread', { convention: 'brm_144' })", checks: [{ dp: 0, want: 432 }] },
-    { group: 'flour', id: 'F11', input: '260 g flour_ap -> cup_us (default)', expect: '2 cups', source: 'milkstreet',
-      call: "K.fromGrams(260, 'cup_us', 'flour_ap')", checks: [{ dp: 0, want: 2 }] },
-    { group: 'flour', id: 'F12', input: '300 g flour_ap -> cup_metric, aww_150', expect: '2 cups', source: 'aww',
-      call: "K.fromGrams(300, 'cup_metric', 'flour_ap', { convention: 'aww_150' })", checks: [{ dp: 0, want: 2 }] },
+    { group: 'flour', id: 'F11', input: '260 g flour_ap -> cup_us (default)', expect: '2.00 cups', source: 'milkstreet',
+      call: "K.fromGrams(260, 'cup_us', 'flour_ap')", checks: [{ dp: 2, want: 2 }] },
+    { group: 'flour', id: 'F12', input: '300 g flour_ap -> cup_metric, aww_150', expect: '2.00 cups', source: 'aww',
+      call: "K.fromGrams(300, 'cup_metric', 'flour_ap', { convention: 'aww_150' })", checks: [{ dp: 2, want: 2 }] },
     { group: 'flour', id: 'F13', input: '1 cup_us flour_ap, usda_125', expect: '125 g', source: 'usda_hg72',
       call: "K.toGrams(1, 'cup_us', 'flour_ap', { convention: 'usda_125' })", checks: [{ dp: 0, want: 125 }] },
 
@@ -185,7 +185,109 @@
       call: "K.toGrams(1.5, 'tsp_us', 'salt_dc_baking')", checks: [{ dp: 1, want: 6.0 }] },
     { group: 'b01', id: 'B7', input: '1 cup_us flour_ap, alias ka', expect: '120 g', source: 'flour_ap aliases -> ka_120 (ka_chart)',
       call: "K.toGrams(1, 'cup_us', 'flour_ap', { convention: 'ka' })", checks: [{ dp: 0, want: 120 }] }
-  ];
+
+    // ── Added by B02: the parser. Each: typed line, the request fields it must produce, and why. ──
+  ].concat([
+    pt('P1', '2 c flour', { kind: 'amount', qty: 2, unit: 'cup', ingredient: 'flour_ap', unknown: [] }, 'whole number; "c" is cup; "flour" means all-purpose (K.WORDS)'),
+    pt('P2', '1.5 cups sugar', { qty: 1.5, unit: 'cup', ingredient: 'sugar_granulated' }, 'decimal; plural unit; "sugar" means granulated'),
+    pt('P3', '1 1/2 cups sugar', { qty: 1.5, qtyText: '1 1/2', unit: 'cup' }, 'mixed number with a space'),
+    pt('P4', '1½ tbsp butter', { qty: 1.5, qtyText: '1½', unit: 'tbsp', ingredient: 'butter' }, 'whole number glued to a fraction character'),
+    pt('P5', '½ tsp salt', { qty: 0.5, unit: 'tsp', ingredient: 'salt_table' }, 'fraction character alone; plain "salt" means table salt'),
+    pt('P6', '2-3 tbsp honey', { qty: 2, qtyText: '2-3', range: [2, 3], unit: 'tbsp', ingredient: 'honey' }, 'range: takes the first amount and notes the range'),
+    pt('P7', '1-1/2 cups milk', { qty: 1.5, range: null, unit: 'cup', ingredient: 'milk' }, 'hyphenated mixed number is not a range'),
+    pt('P8', '2 to 3 cups flour', { qty: 2, range: [2, 3], target: null, ingredient: 'flour_ap' }, '"to" followed by a number is a range, not a target'),
+    pt('P9', '2 T flour', { unit: 'tbsp' }, 'capital T is tablespoon'),
+    pt('P10', '2 t salt', { unit: 'tsp' }, 'small t is teaspoon'),
+    pt('P11', '250 ml milk', { qty: 250, unit: 'ml', ingredient: 'milk' }, 'millilitres'),
+    pt('P12', '1 l water', { unit: 'l', ingredient: 'water' }, 'litres'),
+    pt('P13', '100 g butter', { unit: 'g', ingredient: 'butter' }, 'grams; "butter" is not peanut butter (K.WORDS)'),
+    pt('P14', '1 kg flour', { unit: 'kg' }, 'kilograms'),
+    pt('P15', '4 oz chocolate chips', { unit: 'oz', ingredient: 'chocolate_chips' }, 'ounces; plural ingredient words match the name'),
+    pt('P16', '1 lb butter', { unit: 'lb' }, 'pounds'),
+    pt('P17', '2 sticks butter', { qty: 2, unit: 'stick', ingredient: 'butter' }, 'sticks'),
+    pt('P18', '1 stick', { unit: 'stick', ingredient: 'butter' }, 'a stick with no ingredient means butter, and a note says so'),
+    pt('P19', '2 fl oz milk', { unit: 'floz_us', unitText: 'fl oz' }, 'two-word unit, US fluid ounce'),
+    pt('P20', '1 metric cup flour', { unit: 'cup_metric', ingredient: 'flour_ap' }, 'cup word picks the 250 mL cup whatever the setting'),
+    pt('P21', '1 us cup flour', { unit: 'cup_us' }, 'cup word: US customary cup'),
+    pt('P22', '1 label cup oats', { unit: 'cup_us_label', ingredient: 'oats_old_fashioned' }, 'cup word: 240 mL label cup; "oats" matches the name'),
+    pt('P23', '1 au tbsp butter', { unit: 'tbsp_au' }, 'cup word: 20 mL Australian tablespoon'),
+    pt('P24', '1 cup ap', { ingredient: 'flour_ap' }, '"ap" means all-purpose flour'),
+    pt('P25', '1 cup bread flour', { ingredient: 'flour_bread', candidates: ['flour_bread'] }, 'two-word ingredient wins over "flour" alone (longest match)'),
+    pt('P26', '1 cup brown sugar', { ingredient: 'sugar_brown' }, 'brown sugar'),
+    pt('P27', '1 cup icing sugar', { ingredient: 'sugar_confectioners' }, 'icing sugar'),
+    pt('P28', '1 cup powdered sugar', { ingredient: 'sugar_confectioners' }, 'powdered sugar'),
+    pt('P29', '1 tsp kosher salt', { ingredient: 'salt_diamond_crystal', candidates: ['salt_diamond_crystal', 'salt_morton_kosher', 'salt_windsor_kosher'] },
+      'ambiguous: every kosher salt returned, data-file rank order (Diamond Crystal 34, Morton 35, Windsor unranked)'),
+    pt('P30', '2 c flour ka', { convention: 'ka_120', conventionText: 'ka', unknown: [] }, 'author word from the data file aliases'),
+    pt('P31', '1 cup flour atk', { convention: 'atk_142' }, 'author word atk'),
+    pt('P32', '1 cup flour sally', { convention: 'sallys_125' }, 'author word sally'),
+    pt('P33', '1 cup sugar ka', { convention: 'King Arthur' }, 'author word on an ingredient with no aliases: label starts with King Arthur'),
+    pt('P34', '1 cup brown sugar sally', { convention: null, unknown: ['sally'] }, 'no Sally\'s value for brown sugar: reported, not guessed'),
+    pt('P35', '350f', { kind: 'temp', temp: { scale: 'F', value: 350, fan: false } }, 'Fahrenheit glued to the number'),
+    pt('P36', '350 F', { kind: 'temp', temp: { scale: 'F', value: 350, fan: false } }, 'Fahrenheit with a space and capital'),
+    pt('P37', '180c', { kind: 'temp', temp: { scale: 'C', value: 180, fan: false } }, 'Celsius: bare c at 20 or more'),
+    pt('P38', '2c', { kind: 'amount', unit: 'cup', temp: null }, 'bare c under 20 is cups, and a note says so'),
+    pt('P39', 'gas 4', { kind: 'temp', temp: { scale: 'gas', value: 4, fan: false }, qtySpan: [4, 5] }, 'gas mark'),
+    pt('P40', 'gas 1/2', { kind: 'temp', temp: { scale: 'gas', value: 0.5, fan: false } }, 'gas mark below 1'),
+    pt('P41', 'fan 180c', { kind: 'temp', temp: { scale: 'C', value: 180, fan: true } }, 'fan-oven temperature'),
+    pt('P42', '2 c flour > g', { target: { unit: 'g', ingredient: null } }, 'target after >'),
+    pt('P43', '100 g butter to tbsp', { unit: 'g', ingredient: 'butter', target: { unit: 'tbsp' } }, 'target after "to"'),
+    pt('P44', '1 cup flour in grams', { target: { unit: 'g' } }, 'target after "in"'),
+    pt('P45', '1 tsp table salt > diamond', { ingredient: 'salt_table', target: { ingredient: 'salt_diamond_crystal', candidates: ['salt_diamond_crystal', 'salt_dc_baking'] } },
+      'ingredient target (salt swap); "diamond" names two salts, both returned'),
+    pt('P46', '350°F > °C', { kind: 'temp', target: { scale: 'C' } }, 'degree signs and a scale target (default pin 2)'),
+    pt('P47', '2 cups flur', { ingredient: null, unknown: ['flur'], suggest: { flur: ['flour'] } }, 'misspelt word reported with a suggestion, not used'),
+    pt('P48', '1 tsp table salt diamond', { ingredient: 'salt_table', unknown: ['diamond'] }, 'second ingredient without > is not understood'),
+    pt('P49', '350', { kind: 'number', unit: null }, 'a number alone: asks for a unit'),
+    { group: 'parse', id: 'P50', input: 'every ingredient by its full name', expect: 'each resolves to itself only', source: 'alternative buttons rewrite the line with this phrase',
+      call: "K.data.ingredients.filter(function (i) { var r = P.parse('1 cup ' + P.canonical(i.id)); return r.ingredient !== i.id || r.candidates.length !== 1; }).map(function (i) { return i.id; }).join(', ') || 'none'",
+      checks: [{ text: 'none' }] },
+    { group: 'parse', id: 'P51', input: 'pin templates', expect: '# c flour > g | gas # | # tbsp > mL', source: 'long-press pins the line with its amount as #',
+      call: "[P.template(P.parse('2 c flour > g')), P.template(P.parse('gas 4')), P.template(P.parse('flour')).replace('# flour', 'x'), P.fill('# tbsp > mL', '1')].join(' | ')",
+      checks: [{ text: '# c flour > g | gas # | x | 1 tbsp > mL' }] },
+
+    // ── Added by B02: end to end. Typed line in, the text the screen shows out (answer.js, as app.js draws it). ──
+    et('E1', '2 c flour', '260 g', 'milkstreet (F1)', { assume: 'All-purpose / plain flour · 130 g per US cup' }),
+    et('E2', '350f', '180°C', 'which_oven, ka_convection (O1)', { sub: 'exact 176.7°C · gas 4 · fan 325°F / 160°C' }),
+    et('E3', 'gas 4', '350°F · 180°C', 'which_oven (O3)', { sub: 'fan 325°F / 160°C' }),
+    et('E4', '1 stick butter', '113 g', 'usda_hg72 (I15)', { assume: '1 stick = ½ US cup' }),
+    et('E5', '2 c flour ka', '240 g', 'ka_chart (F2)', { assume: 'King Arthur, spooned' }),
+    et('E6', '1 tsp table salt > diamond', '2⅛ tsp Diamond Crystal kosher salt', 'labels (S5)', { sub: '2.143 tsp · 6.0 g · equal weight', alts: 'Diamond Crystal Baking Salt' }),
+    et('E7', '1 metric cup flour', '137 g', 'milkstreet, ca_sfcr_241 (F4)', { assume: 'metric cup (250 mL)' }),
+    et('E8', 'fan 180c', '375°F fan', 'which_oven pair 200°C = 400°F, fan drops ka_convection and hoover_fan', { sub: 'conventional 200°C · 400°F · gas 6' }),
+    et('E9', 'gas 1/2', '250°F · 120°C', 'hoover_fan, wiki_gas_mark (O4)', {}),
+    et('E10', '180c', '350°F', 'which_oven (O2)', { notes: 'read as °C' }),
+    et('E11', '2 c brown sugar', '440 g', 'usda_hg72: 220 g per cup packed (I3)', {}),
+    et('E12', '100 g butter to tbsp', '7 tbsp + ¼ tsp', 'usda_hg72: 113 g per ½ cup; measurable rule provisional', { sub: '7.08 tbsp' }),
+    et('E13', '260 g flour > cups', '2 cups', 'milkstreet (F11)', { sub: '2.00 cups' }),
+    et('E14', '1 tsp kosher salt', '2.8 g', 'dc_sellsheet (S3); ambiguity shown', { alts: 'Morton kosher salt, Windsor kosher salt (Canada)', notes: 'could be 3' }),
+    et('E15', '2 cups flur', '473 mL', 'nist_hb44_c; flur not used', { notes: 'Not understood: flur (flour?)', warn: true }),
+    et('E16', '1½ cups sugar', '300 g', 'usda_hg72: 200 g per cup (I2)', {}),
+    et('E17', '2-3 tbsp honey', '42 g', 'usda_hg72: 339 g per cup; first amount of the range', { notes: 'Range 2-3' }),
+    et('E18', '1 tbsp', '14.8 mL', 'nist_hb44_c (U7)', {}),
+    et('E19', '2 eggs', '100 g', 'usda_hg72: 50 g each', {}),
+    et('E20', '1 T salt', '18 g', 'morton_label_table (S1)', {}),
+    et('E21', '1 t salt', '6.0 g', 'morton_label_table: 1.5 g per ¼ tsp', {}),
+    et('E22', '1 tsp table salt > morton', '1¼ tsp Morton kosher salt', 'labels (S4)', {}),
+    et('E23', '1 au tbsp butter', '19 g', 'aww_conversions 20 mL; usda_hg72 butter', {}),
+    et('E24', 'gas 2.5', '', 'not a printed mark (O12)', { notes: 'not a printed gas mark', warn: true }),
+    et('E25', '1 cup bread flour atk', '137 g', 'milkstreet default; ATK has no bread flour value', { notes: 'no atk value', warn: true }),
+    et('E26', '2 cups flour > g', '260 g', 'default pin 1', {}),
+    et('E27', '350°F > °C', '180°C', 'default pin 2', {}),
+    et('E28', '1 tbsp > mL', '14.8 mL', 'default pin 3', {}),
+    et('E29', '1 sticks butter > g', '113 g', 'default pin 4', {})
+  ]);
+
+  function pt(id, line, want, why) {
+    return { group: 'parse', id: id, input: line, expect: JSON.stringify(want), source: why,
+             call: 'P.parse(' + JSON.stringify(line) + ')', checks: [{ sub: want }] };
+  }
+  function et(id, line, main, source, more) {
+    var checks = [{ field: 'main', text: main }];
+    Object.keys(more).forEach(function (k) { checks.push(k === 'warn' ? { field: 'warn', eq: more[k] } : { field: k, has: more[k] }); });
+    return { group: 'e2e', id: id, input: line, expect: main + Object.keys(more).map(function (k) { return '; ' + k + ' ' + more[k]; }).join(''),
+             source: source, call: 'H.e2e(' + JSON.stringify(line) + ')', checks: checks };
+  }
 
   // Helpers the calls may use. H.top and H.second read the core's first and second answer
   // exactly as the live app shows them: number, space, unit label.
@@ -194,6 +296,12 @@
     return {
       top: function (s) { return ans(s, 0); },
       second: function (s) { return ans(s, 1); },
+      // the text app.js draws for a typed line
+      e2e: function (line) {
+        var a = env.A.show(line);
+        return { main: a.main, sub: a.sub, assume: a.assumption.join(' | '), notes: a.notes.join(' | '),
+                 alts: a.alts.map(function (x) { return x.name; }).join(', '), warn: a.warn };
+      },
       SPOONS: ['tbsp', 'tsp', '1/2 tsp', '1/4 tsp', '1/8 tsp']
     };
   }
@@ -209,16 +317,30 @@
     return String(x);
   }
 
+  // Every field in want must equal the same field in got; nested objects are compared the same way,
+  // arrays and plain values exactly. Returns the fields that differ.
+  function subset(want, got, path) {
+    var miss = [];
+    Object.keys(want).forEach(function (k) {
+      var w = want[k], g = got == null ? undefined : got[k], p = (path ? path + '.' : '') + k;
+      if (w && typeof w === 'object' && !Array.isArray(w)) miss = miss.concat(g && typeof g === 'object' ? subset(w, g, p) : [p + ' got ' + JSON.stringify(g)]);
+      else if (JSON.stringify(w) !== JSON.stringify(g === undefined ? null : g)) miss.push(p + ' got ' + JSON.stringify(g));
+    });
+    return miss;
+  }
+
   function check(c, answer) {
     var v = c.field ? (answer == null ? undefined : answer[c.field]) : answer, ok, got;
     if ('rel' in c) { ok = typeof v === 'number' && Math.abs(v - c.rel) <= 1e-9 * Math.abs(c.rel); got = show(v); }
     else if ('dp' in c) { got = typeof v === 'number' ? v.toFixed(c.dp) : show(v); ok = got === c.want.toFixed(c.dp); }
     else if ('text' in c) { got = show(v); ok = norm(got) === norm(c.text); }
+    else if ('has' in c) { got = show(v); ok = norm(got).indexOf(norm(c.has)) >= 0; }
+    else if ('sub' in c) { var miss = subset(c.sub, v); ok = !miss.length; got = ok ? 'all fields match' : miss.join('; '); }
     else { got = show(v); ok = v === c.eq; }
     return { ok: ok, got: (c.field ? c.field + ' ' : '') + got };
   }
 
-  // env: { K, UC, Oven }. opts.groups: run only these groups.
+  // env: { K, UC, Oven, P, A }. opts.groups: run only these groups.
   function run(env, opts) {
     opts = opts || {};
     var H = helpers(env);
@@ -226,7 +348,7 @@
       var r = { group: t.group, id: t.id, input: t.input, expect: t.expect, source: t.source, call: t.call, note: t.note || '' };
       if (t.pending) { r.status = 'PENDING'; r.got = ''; r.reason = t.pending; return r; }
       try {
-        var answer = new Function('K', 'UC', 'Oven', 'H', '"use strict"; return (' + t.call + ');')(env.K, env.UC, env.Oven, H);
+        var answer = new Function('K', 'UC', 'Oven', 'H', 'P', 'A', '"use strict"; return (' + t.call + ');')(env.K, env.UC, env.Oven, H, env.P, env.A);
         var res = t.checks.map(function (c) { return check(c, answer); });
         r.got = res.map(function (x) { return x.got; }).join('; ');
         r.status = res.every(function (x) { return x.ok; }) ? 'PASS' : 'FAIL';
@@ -252,6 +374,8 @@
       Oven: require(path.join(dir, 'oven.js')),
       K: require(path.join(dir, 'kitchen.js')).create(require(path.join(dir, 'conversion-data.json')))
     };
+    env.P = require(path.join(dir, 'parse.js')).create(env.K);
+    env.A = require(path.join(dir, 'answer.js')).create(env.K, env.Oven, env.P);
     var results = run(env);
     results.forEach(function (r) {
       console.log((r.status + '   ').slice(0, 8) + (r.id + '    ').slice(0, 5) + r.input + '  |  expect ' + r.expect + '  |  got ' + r.got + (r.reason ? '  |  ' + r.reason : ''));

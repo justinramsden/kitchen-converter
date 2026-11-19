@@ -10,8 +10,24 @@
     "T01 roster and T02 demand reports are not stored as files. They live in the project chats listed in project-journal.md."
   ],
   "reuse": {
-    "public_domain": ["usda_hg72", "usda_168936", "nist_hb44_c", "cfr_101_9"],
-    "unclear_terms_restrict_reproduction": ["ka_chart", "ka_measure", "ka_yeast", "ka_convection", "atk_chart", "atk_flour", "atk_salt", "milkstreet", "ms_mixins", "milkstreet_salt"],
+    "public_domain": [
+      "usda_hg72",
+      "usda_168936",
+      "nist_hb44_c",
+      "cfr_101_9"
+    ],
+    "unclear_terms_restrict_reproduction": [
+      "ka_chart",
+      "ka_measure",
+      "ka_yeast",
+      "ka_convection",
+      "atk_chart",
+      "atk_flour",
+      "atk_salt",
+      "milkstreet",
+      "ms_mixins",
+      "milkstreet_salt"
+    ],
     "note": "Reported from each site's terms by T05; not a legal opinion. Sources not listed here were not checked. Justin decides before public launch (journal open question 1)."
   },
   "sources": {
@@ -85,391 +101,2644 @@
   "cup_standard": {
     "default": "us",
     "sets": {
-      "us": {"cup": "cup_us", "tbsp": "tbsp_us", "tsp": "tsp_us", "label": "US cup 237 mL"},
-      "metric": {"cup": "cup_metric", "tbsp": "tbsp_metric", "tsp": "tsp_metric", "label": "Metric cup 250 mL"},
-      "us_label": {"cup": "cup_us_label", "tbsp": "tbsp_metric", "tsp": "tsp_metric", "label": "US label cup 240 mL"},
-      "au": {"cup": "cup_metric", "tbsp": "tbsp_au", "tsp": "tsp_metric", "label": "Australian: cup 250 mL, tbsp 20 mL"}
+      "us": {
+        "cup": "cup_us",
+        "tbsp": "tbsp_us",
+        "tsp": "tsp_us",
+        "label": "US cup 237 mL"
+      },
+      "metric": {
+        "cup": "cup_metric",
+        "tbsp": "tbsp_metric",
+        "tsp": "tsp_metric",
+        "label": "Metric cup 250 mL"
+      },
+      "us_label": {
+        "cup": "cup_us_label",
+        "tbsp": "tbsp_metric",
+        "tsp": "tsp_metric",
+        "label": "US label cup 240 mL"
+      },
+      "au": {
+        "cup": "cup_metric",
+        "tbsp": "tbsp_au",
+        "tsp": "tsp_metric",
+        "label": "Australian: cup 250 mL, tbsp 20 mL"
+      }
     },
     "note": "One-tap chip on cup and spoon results (T03). Default US customary is judgment: a typed cup means the recipe author's cup and most recipes found online are US."
   },
   "volume_units_ml": [
-    {"id": "cup_us", "ml": 236.5882365, "measure": "8 US fl oz exactly (HB44 C-25); gal = 231 in3, in = 2.54 cm", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "cup_us_label", "ml": 240, "measure": "21 CFR 101.9(b)(5)(viii): a cup means 240 mL", "source": "cfr_101_9", "primary": true, "verified": true},
-    {"id": "cup_metric", "ml": 250, "measure": "SFCR s.241(3)(a): one cup is equivalent to 250 mL", "source": "ca_sfcr_241", "primary": true, "verified": true, "also": ["hc_food_guide_measure", "aww_conversions"]},
-    {"id": "cup_japan", "ml": 200, "measure": "1 cup = 200 mL", "source": "wiki_cup", "primary": false, "verified": false, "reason": "No JIS or Japanese ministry source found; Wikipedia only"},
-    {"id": "cup_ca_premetric", "ml": 227.3045, "measure": "8 Canadian (imperial) fl oz; fl oz = 1/160 gal (WMA Sch. II)", "source": "ca_wma_sch2", "primary": false, "verified": false, "reason": "Arithmetic is statutory but no law defines an 8-oz cup; convention from Wikipedia only. Not for v1 UI"},
-    {"id": "tbsp_us", "ml": 14.78676478125, "measure": "1/2 US fl oz exactly (HB44 C-25)", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "tbsp_metric", "ml": 15, "measure": "SFCR s.241(3)(a): one tablespoon is equivalent to 15 mL; also the 21 CFR 101.9 label tablespoon", "source": "ca_sfcr_241", "primary": true, "verified": true, "also": ["cfr_101_9"]},
-    {"id": "tbsp_au", "ml": 20, "measure": "1 Australian tablespoon = 20 mL", "source": "aww_conversions", "primary": false, "verified": true, "also": ["foodwatch_conversions"], "reason": "Two named authorities opened; Standards Australia text not reached"},
-    {"id": "tsp_us", "ml": 4.92892159375, "measure": "1/3 US tbsp exactly (HB44 C-25)", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "tsp_metric", "ml": 5, "measure": "21 CFR 101.9(b)(5)(viii): a teaspoon means 5 mL; Health Canada food guide 5 mL = 1 tsp", "source": "cfr_101_9", "primary": true, "verified": true, "also": ["hc_food_guide_measure"]},
-    {"id": "floz_us", "ml": 29.5735295625, "measure": "1/128 US gal (HB44 C-25)", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "floz_us_label", "ml": 30, "measure": "21 CFR 101.9(b)(5)(viii): 1 fl oz means 30 mL", "source": "cfr_101_9", "primary": true, "verified": true},
-    {"id": "floz_imperial", "ml": 28.4130625, "measure": "1/20 pint, gallon = 4.54609 dm3 (UK WMA Sch.1 Pt VI); 1/160 gal (Canada WMA Sch. II)", "source": "uk_wma_sch1", "primary": true, "verified": true, "also": ["ca_wma_sch2"]},
-    {"id": "pt_us", "ml": 473.176473, "measure": "16 US fl oz (HB44 C-6)", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "qt_us", "ml": 946.352946, "measure": "2 US pints (HB44 C-6)", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "gal_us", "ml": 3785.411784, "measure": "231 in3 exactly (HB44 C-25, C-16)", "source": "nist_hb44_c", "primary": true, "verified": true},
-    {"id": "gal_imperial", "ml": 4546.09, "measure": "4.54609 dm3 (UK WMA Sch.1 Pt VI; Canada WMA Sch. II)", "source": "uk_wma_sch1", "primary": true, "verified": true, "also": ["ca_wma_sch2"]}
+    {
+      "id": "cup_us",
+      "ml": 236.5882365,
+      "measure": "8 US fl oz exactly (HB44 C-25); gal = 231 in3, in = 2.54 cm",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "cup_us_label",
+      "ml": 240,
+      "measure": "21 CFR 101.9(b)(5)(viii): a cup means 240 mL",
+      "source": "cfr_101_9",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "cup_metric",
+      "ml": 250,
+      "measure": "SFCR s.241(3)(a): one cup is equivalent to 250 mL",
+      "source": "ca_sfcr_241",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "hc_food_guide_measure",
+        "aww_conversions"
+      ]
+    },
+    {
+      "id": "cup_japan",
+      "ml": 200,
+      "measure": "1 cup = 200 mL",
+      "source": "wiki_cup",
+      "primary": false,
+      "verified": false,
+      "reason": "No JIS or Japanese ministry source found; Wikipedia only"
+    },
+    {
+      "id": "cup_ca_premetric",
+      "ml": 227.3045,
+      "measure": "8 Canadian (imperial) fl oz; fl oz = 1/160 gal (WMA Sch. II)",
+      "source": "ca_wma_sch2",
+      "primary": false,
+      "verified": false,
+      "reason": "Arithmetic is statutory but no law defines an 8-oz cup; convention from Wikipedia only. Not for v1 UI"
+    },
+    {
+      "id": "tbsp_us",
+      "ml": 14.78676478125,
+      "measure": "1/2 US fl oz exactly (HB44 C-25)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "tbsp_metric",
+      "ml": 15,
+      "measure": "SFCR s.241(3)(a): one tablespoon is equivalent to 15 mL; also the 21 CFR 101.9 label tablespoon",
+      "source": "ca_sfcr_241",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "cfr_101_9"
+      ]
+    },
+    {
+      "id": "tbsp_au",
+      "ml": 20,
+      "measure": "1 Australian tablespoon = 20 mL",
+      "source": "aww_conversions",
+      "primary": false,
+      "verified": true,
+      "also": [
+        "foodwatch_conversions"
+      ],
+      "reason": "Two named authorities opened; Standards Australia text not reached"
+    },
+    {
+      "id": "tsp_us",
+      "ml": 4.92892159375,
+      "measure": "1/3 US tbsp exactly (HB44 C-25)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "tsp_metric",
+      "ml": 5,
+      "measure": "21 CFR 101.9(b)(5)(viii): a teaspoon means 5 mL; Health Canada food guide 5 mL = 1 tsp",
+      "source": "cfr_101_9",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "hc_food_guide_measure"
+      ]
+    },
+    {
+      "id": "floz_us",
+      "ml": 29.5735295625,
+      "measure": "1/128 US gal (HB44 C-25)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "floz_us_label",
+      "ml": 30,
+      "measure": "21 CFR 101.9(b)(5)(viii): 1 fl oz means 30 mL",
+      "source": "cfr_101_9",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "floz_imperial",
+      "ml": 28.4130625,
+      "measure": "1/20 pint, gallon = 4.54609 dm3 (UK WMA Sch.1 Pt VI); 1/160 gal (Canada WMA Sch. II)",
+      "source": "uk_wma_sch1",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "ca_wma_sch2"
+      ]
+    },
+    {
+      "id": "pt_us",
+      "ml": 473.176473,
+      "measure": "16 US fl oz (HB44 C-6)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "qt_us",
+      "ml": 946.352946,
+      "measure": "2 US pints (HB44 C-6)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "gal_us",
+      "ml": 3785.411784,
+      "measure": "231 in3 exactly (HB44 C-25, C-16)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "gal_imperial",
+      "ml": 4546.09,
+      "measure": "4.54609 dm3 (UK WMA Sch.1 Pt VI; Canada WMA Sch. II)",
+      "source": "uk_wma_sch1",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "ca_wma_sch2"
+      ]
+    }
   ],
   "weight_units_g": [
-    {"id": "oz", "g": 28.349523125, "measure": "1/16 lb (HB44 C-7; UK WMA Sch.1 Pt VI; Canada WMA Sch. II)", "source": "nist_hb44_c", "primary": true, "verified": true, "also": ["uk_wma_sch1", "ca_wma_sch2"]},
-    {"id": "oz_us_label", "g": 28, "measure": "21 CFR 101.9(b)(5)(viii): 1 oz in weight means 28 g", "source": "cfr_101_9", "primary": true, "verified": true},
-    {"id": "lb", "g": 453.59237, "measure": "453.592 37 g exactly (HB44 C-27); same value in UK and Canada Weights and Measures Acts", "source": "nist_hb44_c", "primary": true, "verified": true, "also": ["uk_wma_sch1", "ca_wma_sch2"]}
+    {
+      "id": "oz",
+      "g": 28.349523125,
+      "measure": "1/16 lb (HB44 C-7; UK WMA Sch.1 Pt VI; Canada WMA Sch. II)",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "uk_wma_sch1",
+        "ca_wma_sch2"
+      ]
+    },
+    {
+      "id": "oz_us_label",
+      "g": 28,
+      "measure": "21 CFR 101.9(b)(5)(viii): 1 oz in weight means 28 g",
+      "source": "cfr_101_9",
+      "primary": true,
+      "verified": true
+    },
+    {
+      "id": "lb",
+      "g": 453.59237,
+      "measure": "453.592 37 g exactly (HB44 C-27); same value in UK and Canada Weights and Measures Acts",
+      "source": "nist_hb44_c",
+      "primary": true,
+      "verified": true,
+      "also": [
+        "uk_wma_sch1",
+        "ca_wma_sch2"
+      ]
+    }
   ],
   "ingredients": [
-    {"id": "salt_table", "name": "Table salt", "group": "baking", "rank": 1, "volume_reliable": true, "conventions": [
-      {"label": "Box label (Morton)", "grams": 1.5, "measure": "0.25 tsp_us", "sodium_mg": 590, "source": "morton_label_table", "verified": true, "default": true},
-      {"label": "USDA", "grams": 6, "measure": "1 tsp_us", "source": "usda_hg72", "verified": true},
-      {"label": "King Arthur", "grams": 18, "measure": "1 tbsp_us", "source": "ka_chart", "verified": true},
-      {"label": "America's Test Kitchen", "grams": 23, "measure": "1 tbsp_us", "source": "atk_salt", "verified": true, "note": "Implies 1.56 g/mL; ATK's taste-test page gives 18 g/tbsp (excerpt only)"},
-      {"label": "Measured (Dad Cooks Dinner)", "grams": 76.0, "measure": "0.25 cup_us", "source": "dcd_salt", "verified": true, "note": "Morton table salt; method not stated"},
-      {"label": "MasterClass", "grams": 19, "measure": "1 tbsp_us", "source": "masterclass_salt", "verified": true, "note": "Approximate, no source given"}
-    ]},
-    {"id": "sugar_granulated", "name": "Granulated sugar", "group": "baking", "rank": 2, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 200, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 198, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "America's Test Kitchen", "grams": 198, "measure": "1 cup_us", "source": "atk_chart", "verified": true}
-    ]},
-    {"id": "egg_large", "name": "Large egg", "group": "baking", "rank": 3, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 50, "measure": "1 each", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 50, "measure": "1 each", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "butter", "name": "Butter", "group": "baking", "rank": 4, "volume_reliable": true, "conventions": [
-      {"label": "USDA, 1 stick", "grams": 113, "measure": "0.5 cup_us", "source": "usda_hg72", "verified": true, "default": true, "note": "stick = 1/2 cup"},
-      {"label": "King Arthur", "grams": 113, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "America's Test Kitchen", "grams": 113, "measure": "8 tbsp_us", "source": "atk_chart", "verified": true},
-      {"label": "USDA, 1 tbsp", "grams": 14, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true}
-    ]},
-    {"id": "flour_ap", "name": "All-purpose / plain flour", "group": "baking", "rank": 5, "volume_reliable": false, "aliases": {"ka": "ka_120", "atk": "atk_142", "sally": "sallys_125"}, "conventions": [
-      {"key": "ka_120", "label": "King Arthur, spooned", "grams": 120, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"key": "toh_120", "label": "Taste of Home, spooned (table; its text says 125)", "grams": 120, "measure": "1 cup_us", "source": "toh", "verified": true},
-      {"key": "cotswold_120", "label": "Cotswold Flour, unsifted", "grams": 120, "measure": "1 cup (size unstated)", "source": "cotswold", "verified": true},
-      {"key": "cotswold_110", "label": "Cotswold Flour, sifted", "grams": 110, "measure": "1 cup (size unstated)", "source": "cotswold", "verified": true},
-      {"key": "usda_115_sifted", "label": "USDA, sifted then spooned", "grams": 115, "measure": "1 cup_us", "source": "usda_hg72", "verified": true},
-      {"key": "sallys_118", "label": "Sally's, sifted", "grams": 118, "measure": "1 cup_us", "source": "sallys", "verified": true},
-      {"key": "sallys_125", "label": "Sally's, spooned", "grams": 125, "measure": "1 cup_us", "source": "sallys", "verified": true},
-      {"key": "usda_125", "label": "USDA, spooned, unsifted", "grams": 125, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "also": ["usda_168936"]},
-      {"key": "chelsea_125", "label": "Chelsea NZ", "grams": 125, "measure": "1 cup (size unstated)", "source": "chelsea", "verified": true},
-      {"key": "delicious_125", "label": "delicious. UK", "grams": 125, "measure": "1 cup (250 mL implied)", "source": "delicious_uk", "verified": true},
-      {"key": "se_128", "label": "Serious Eats, spooned", "grams": 127.6, "stated": "4.5 oz", "measure": "1 cup_us", "source": "seriouseats_aol", "verified": true, "note": "Read via AOL syndication; seriouseats.com blocked"},
-      {"key": "milkstreet_130", "label": "Middle of published values (Milk Street, gentle dip)", "grams": 130, "measure": "1 cup_us", "source": "milkstreet", "verified": true, "default": true},
-      {"key": "joy_130", "label": "Joy of Baking", "grams": 130, "measure": "1 cup_us", "source": "joyofbaking", "verified": true},
-      {"key": "brm_136", "label": "Bob's Red Mill", "grams": 136, "measure": "1 cup_us", "source": "brm_chart", "verified": true},
-      {"key": "atk_142", "label": "ATK, dip and sweep", "grams": 142, "stated": "5 oz", "measure": "1 cup_us", "source": "atk_chart", "verified": true, "also": ["atk_flour"]},
-      {"key": "aww_150", "label": "Women's Weekly AU", "grams": 150, "measure": "1 cup_metric", "source": "aww", "verified": true},
-      {"key": "olson_150", "label": "Anna Olson CA", "grams": 150, "measure": "1 cup (250 mL stated for liquids only)", "source": "annaolson", "verified": true}
-    ]},
-    {"id": "water", "name": "Water", "group": "baking", "rank": 6, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 237, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true, "note": "listed as 8 fl oz"},
-      {"label": "King Arthur", "grams": 227, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "note": "8 oz; an ounce rounding"}
-    ]},
-    {"id": "milk", "name": "Milk", "group": "baking", "rank": 7, "volume_reliable": true, "conventions": [
-      {"label": "USDA, whole", "grams": 244, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 227, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "note": "8 oz; an ounce rounding"}
-    ]},
-    {"id": "baking_soda", "name": "Baking soda", "group": "baking", "rank": 8, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 5, "measure": "1 tsp_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 3, "measure": "0.5 tsp_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "vanilla", "name": "Vanilla extract", "group": "baking", "rank": 9, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 4, "measure": "1 tsp_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 14, "measure": "1 tbsp_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "sugar_brown", "name": "Brown sugar, packed", "group": "baking", "rank": 10, "volume_reliable": false, "conventions": [
-      {"label": "USDA, packed", "grams": 220, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 213, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "America's Test Kitchen", "grams": 198, "measure": "1 cup_us", "source": "atk_chart", "verified": true},
-      {"label": "USDA, unpacked", "grams": 145, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "note": "different packing; not a disagreement"}
-    ]},
-    {"id": "oil_vegetable", "name": "Vegetable oil", "group": "baking", "rank": 11, "volume_reliable": true, "conventions": [
-      {"label": "USDA, canola", "grams": 218, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "Milk Street", "grams": 206, "measure": "1 cup_us", "source": "ms_mixins", "verified": true, "note": "listed as 'Oil, liquid'"},
-      {"label": "King Arthur", "grams": 198, "measure": "1 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "baking_powder", "name": "Baking powder", "group": "baking", "rank": 12, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 5, "measure": "1 tsp_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 4, "measure": "1 tsp_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "cinnamon", "name": "Ground cinnamon", "group": "baking", "rank": 13, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 2, "measure": "1 tsp_us", "source": "usda_hg72", "verified": true, "default": true, "note": "only opened source"}
-    ]},
-    {"id": "yeast_instant", "name": "Instant yeast", "group": "baking", "rank": 14, "volume_reliable": true, "conventions": [
-      {"label": "King Arthur", "grams": 7, "measure": "2.25 tsp_us", "source": "ka_chart", "verified": true, "default": true},
-      {"label": "Red Star, active dry packet", "grams": 7, "measure": "2.25 tsp_us", "source": "redstar_packet", "verified": true, "note": "active dry; Red Star says 1:1 with instant"},
-      {"label": "USDA, active dry", "grams": 4, "measure": "1 tsp_us", "source": "usda_hg72", "verified": true}
-    ]},
-    {"id": "flour_bread", "name": "Bread / strong flour", "group": "baking", "rank": 15, "volume_reliable": false, "conventions": [
-      {"key": "ka_120", "label": "King Arthur", "grams": 120, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"key": "sallys_130", "label": "Sally's", "grams": 130, "measure": "1 cup_us", "source": "sallys", "verified": true},
-      {"key": "milkstreet_137", "label": "Milk Street", "grams": 137, "measure": "1 cup_us", "source": "milkstreet", "verified": true, "default": true},
-      {"key": "usda_137", "label": "USDA", "grams": 137, "measure": "1 cup_us", "source": "usda_hg72", "verified": true},
-      {"key": "brm_144", "label": "Bob's Red Mill, spooned", "grams": 144, "measure": "1 cup_us", "source": "brm_chart", "verified": true},
-      {"key": "olson_150", "label": "Anna Olson CA", "grams": 150, "measure": "1 cup (250 mL stated for liquids only)", "source": "annaolson", "verified": true},
-      {"key": "aww_160", "label": "Women's Weekly AU", "grams": 160, "measure": "1 cup_metric", "source": "aww", "verified": true}
-    ]},
-    {"id": "flour_whole_wheat", "name": "Whole wheat / wholemeal flour", "group": "baking", "rank": 16, "volume_reliable": false, "conventions": [
-      {"key": "ka_113", "label": "King Arthur (Premium 100%)", "grams": 113, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"key": "usda_120", "label": "USDA, stirred, spooned", "grams": 120, "measure": "1 cup_us", "source": "usda_hg72", "verified": true},
-      {"key": "olson_120", "label": "Anna Olson CA", "grams": 120, "measure": "1 cup (250 mL stated for liquids only)", "source": "annaolson", "verified": true},
-      {"key": "toh_130", "label": "Taste of Home", "grams": 130, "measure": "1 cup_us", "source": "toh", "verified": true},
-      {"key": "joy_130", "label": "Joy of Baking", "grams": 130, "measure": "1 cup_us", "source": "joyofbaking", "verified": true},
-      {"key": "milkstreet_140", "label": "Milk Street", "grams": 140, "measure": "1 cup_us", "source": "milkstreet", "verified": true, "default": true},
-      {"key": "brm_152", "label": "Bob's Red Mill", "grams": 152, "measure": "1 cup_us", "source": "brm_chart", "verified": true},
-      {"key": "atk_156", "label": "ATK", "grams": 156, "stated": "5.5 oz", "measure": "1 cup_us", "source": "atk_chart", "verified": true}
-    ]},
-    {"id": "chocolate_chips", "name": "Chocolate chips", "group": "baking", "rank": 17, "volume_reliable": true, "conventions": [
-      {"label": "USDA, semisweet", "grams": 168, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 170, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "Milk Street", "grams": 164, "measure": "1 cup_us", "source": "ms_mixins", "verified": true}
-    ]},
-    {"id": "walnuts_chopped", "name": "Walnuts, chopped", "group": "baking", "rank": 18, "volume_reliable": false, "conventions": [
-      {"label": "USDA", "grams": 120, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 113, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "Milk Street", "grams": 112, "measure": "1 cup_us", "source": "ms_mixins", "verified": true}
-    ]},
-    {"id": "sugar_confectioners", "name": "Confectioners' / icing sugar, unsifted", "group": "baking", "rank": 19, "volume_reliable": false, "conventions": [
-      {"label": "USDA", "grams": 120, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 113, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "America's Test Kitchen", "grams": 113, "measure": "1 cup_us", "source": "atk_chart", "verified": true}
-    ]},
-    {"id": "cocoa", "name": "Cocoa, unsweetened", "group": "baking", "rank": 20, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 86, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 42, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "America's Test Kitchen", "grams": 85, "measure": "1 cup_us", "source": "atk_chart", "verified": true},
-      {"label": "Milk Street", "grams": 85, "measure": "1 cup_us", "source": "ms_mixins", "verified": true}
-    ]},
-    {"id": "flour_cake", "name": "Cake flour", "group": "baking", "rank": 21, "volume_reliable": false, "conventions": [
-      {"key": "sallys_105", "label": "Sally's, sifted", "grams": 105, "measure": "1 cup_us", "source": "sallys", "verified": true},
-      {"key": "brm_112", "label": "Bob's Red Mill (super-fine)", "grams": 112, "measure": "1 cup_us", "source": "brm_chart", "verified": true},
-      {"key": "atk_113", "label": "ATK", "grams": 113, "stated": "4 oz", "measure": "1 cup_us", "source": "atk_chart", "verified": true},
-      {"key": "sallys_118", "label": "Sally's", "grams": 118, "measure": "1 cup_us", "source": "sallys", "verified": true},
-      {"key": "toh_118", "label": "Taste of Home", "grams": 118, "measure": "1 cup_us", "source": "toh", "verified": true},
-      {"key": "ka_120", "label": "King Arthur (unbleached cake)", "grams": 120, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"key": "milkstreet_120", "label": "Milk Street", "grams": 120, "measure": "1 cup_us", "source": "milkstreet", "verified": true, "default": true},
-      {"key": "joy_120", "label": "Joy of Baking", "grams": 120, "measure": "1 cup_us", "source": "joyofbaking", "verified": true},
-      {"key": "olson_65_half", "label": "Anna Olson CA (cake and pastry)", "grams": 65, "measure": "0.5 cup (250 mL stated for liquids only)", "source": "annaolson", "verified": true},
-      {"key": "usda_137", "label": "USDA, unsifted, spooned", "grams": 137, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "note": "Outlier against eight other sources; check against the PDF (T11)"}
-    ]},
-    {"id": "flour_selfraising", "name": "Self-raising / self-rising flour", "group": "baking", "volume_reliable": false, "default_follows": "flour_ap", "conventions": [
-      {"key": "ka_113", "label": "King Arthur", "grams": 113, "measure": "1 cup_us", "source": "ka_chart", "verified": true},
-      {"key": "toh_124", "label": "Taste of Home", "grams": 124, "measure": "1 cup_us", "source": "toh", "verified": true},
-      {"key": "chelsea_125", "label": "Chelsea NZ", "grams": 125, "measure": "1 cup (size unstated)", "source": "chelsea", "verified": true},
-      {"key": "brm_136", "label": "Bob's Red Mill, spooned", "grams": 136, "measure": "1 cup_us", "source": "brm_chart", "verified": true},
-      {"key": "aww_150", "label": "Women's Weekly AU", "grams": 150, "measure": "1 cup_metric", "source": "aww", "verified": true}
-    ]},
-    {"id": "cream_heavy", "name": "Heavy cream", "group": "baking", "rank": 22, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 238, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 227, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "note": "8 oz; an ounce rounding"}
-    ]},
-    {"id": "honey", "name": "Honey", "group": "baking", "rank": 23, "volume_reliable": true, "conventions": [
-      {"label": "USDA, cup", "grams": 339, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "USDA, tbsp", "grams": 21, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true},
-      {"label": "King Arthur", "grams": 21, "measure": "1 tbsp_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "oats_old_fashioned", "name": "Old-fashioned oats", "group": "baking", "rank": 24, "volume_reliable": false, "conventions": [
-      {"label": "Quaker label", "grams": 40, "measure": "0.5 cup_us_label", "source": "label_quaker_oats", "verified": true, "default": true, "note": "label cup = 240 mL"},
-      {"label": "King Arthur", "grams": 89, "measure": "1 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "buttermilk", "name": "Buttermilk", "group": "baking", "rank": 25, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 245, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 227, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "note": "8 oz; an ounce rounding"}
-    ]},
-    {"id": "sour_cream", "name": "Sour cream", "group": "baking", "rank": 26, "volume_reliable": true, "conventions": [
-      {"label": "USDA, cup", "grams": 230, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "USDA, tbsp", "grams": 12, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true},
-      {"label": "King Arthur", "grams": 227, "measure": "1 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "cream_cheese", "name": "Cream cheese", "group": "baking", "rank": 27, "volume_reliable": false, "conventions": [
-      {"label": "King Arthur", "grams": 227, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "default": true},
-      {"label": "Philadelphia label (Canada)", "grams": 30, "measure": "2 tbsp_metric", "source": "label_philly_ca", "verified": true, "note": "15 mL label tablespoon assumed for Canada"}
-    ]},
-    {"id": "coconut_sweetened", "name": "Coconut, sweetened shredded", "group": "baking", "rank": 28, "volume_reliable": false, "conventions": [
-      {"label": "King Arthur", "grams": 85, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "default": true},
-      {"label": "Milk Street, sweetened flakes", "grams": 70, "measure": "1 cup_us", "source": "ms_mixins", "verified": true, "note": "flakes, not shreds"},
-      {"label": "USDA, raw shredded, not packed", "grams": 80, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "note": "raw, unsweetened; different product"}
-    ]},
-    {"id": "pecans_chopped", "name": "Pecans, chopped", "group": "baking", "rank": 29, "volume_reliable": false, "conventions": [
-      {"label": "King Arthur, diced", "grams": 57, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true, "default": true},
-      {"label": "Milk Street", "grams": 114, "measure": "1 cup_us", "source": "ms_mixins", "verified": true}
-    ]},
-    {"id": "raisins", "name": "Raisins", "group": "baking", "rank": 30, "volume_reliable": false, "conventions": [
-      {"label": "USDA, not packed", "grams": 145, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "Milk Street", "grams": 155, "measure": "1 cup_us", "source": "ms_mixins", "verified": true},
-      {"label": "King Arthur, packed", "grams": 85, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "maple_syrup", "name": "Maple syrup", "group": "baking", "rank": 31, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 20, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 156, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "molasses", "name": "Molasses", "group": "baking", "rank": 32, "volume_reliable": true, "conventions": [
-      {"label": "King Arthur", "grams": 85, "measure": "0.25 cup_us", "source": "ka_chart", "verified": true, "default": true},
-      {"label": "USDA, blackstrap", "grams": 328, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "note": "blackstrap, not regular molasses"}
-    ]},
-    {"id": "cornstarch", "name": "Cornstarch / cornflour", "group": "baking", "rank": 33, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 8, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 28, "measure": "0.25 cup_us", "source": "ka_chart", "verified": true},
-      {"label": "Milk Street 2020", "grams": 132, "measure": "1 cup_us", "source": "ms_usual_2020", "verified": false, "note": "search excerpt only"}
-    ]},
-    {"id": "salt_diamond_crystal", "name": "Diamond Crystal kosher salt", "group": "baking", "rank": 34, "volume_reliable": true, "conventions": [
-      {"label": "Box label", "grams": 0.7, "measure": "0.25 tsp_us", "sodium_mg": 280, "source": "dc_sellsheet", "also": ["dc_label_retail"], "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 8, "measure": "1 tbsp_us", "source": "ka_chart", "verified": true},
-      {"label": "Measured 2025 (UC Master Food Preservers)", "grams": 8.2, "measure": "1 tbsp_us", "source": "ucanr_salt", "verified": true, "note": "Kosher Salt Flakes, level, 0.02 g scale"},
-      {"label": "America's Test Kitchen", "grams": 10, "measure": "1 tbsp_us", "source": "atk_salt", "verified": true},
-      {"label": "Measured (Dad Cooks Dinner)", "grams": 45.2, "measure": "0.25 cup_us", "source": "dcd_salt", "verified": true, "note": "Undated; possibly older grain"}
-    ]},
-    {"id": "salt_morton_kosher", "name": "Morton kosher salt", "group": "baking", "rank": 35, "volume_reliable": true, "conventions": [
-      {"label": "Box label", "grams": 1.2, "measure": "0.25 tsp_us", "sodium_mg": 480, "source": "morton_label_kosher", "verified": true, "default": true},
-      {"label": "King Arthur / ATK", "grams": 16, "measure": "1 tbsp_us", "source": "ka_chart", "also": ["atk_salt"], "verified": true},
-      {"label": "Measured (Dad Cooks Dinner)", "grams": 62.0, "measure": "0.25 cup_us", "source": "dcd_salt", "verified": true},
-      {"label": "MasterClass", "grams": 15, "measure": "1 tbsp_us", "source": "masterclass_salt", "verified": true}
-    ]},
-    {"id": "salt_fine_sea", "name": "Fine sea salt", "group": "baking", "volume_reliable": true, "conventions": [
-      {"label": "Same as table salt by spoon (Morton chart)", "same_as": "salt_table", "source": "morton_chart", "measure": "volume equivalence up to 1 tbsp", "verified": true, "default": true},
-      {"label": "La Baleine, measured (UCANR)", "grams": 15.8, "measure": "1 tbsp_us", "source": "ucanr_salt", "verified": true},
-      {"label": "La Baleine, measured (Dad Cooks Dinner)", "grams": 64.8, "measure": "0.25 cup_us", "source": "dcd_salt", "verified": true},
-      {"label": "Kirkland, measured (UCANR)", "grams": 14.9, "measure": "1 tbsp_us", "source": "ucanr_salt", "verified": true}
-    ]},
-    {"id": "salt_maldon", "name": "Flaky sea salt (Maldon)", "group": "baking", "volume_reliable": false, "note": "US label states 1/4 tsp (1.5 g); unverified and inconsistent with measurements. Do not use.", "conventions": [
-      {"label": "Measured (UCANR)", "grams": 9.8, "measure": "1 tbsp_us", "source": "ucanr_salt", "verified": true, "default": true},
-      {"label": "Measured (Dad Cooks Dinner)", "grams": 33.2, "measure": "0.25 cup_us", "source": "dcd_salt", "verified": true}
-    ]},
-    {"id": "salt_windsor_kosher", "name": "Windsor kosher salt (Canada)", "group": "baking", "volume_reliable": true, "conventions": [
-      {"label": "Box label", "grams": 1.1, "measure": "0.25 tsp_us", "sodium_mg": 440, "source": "windsor_kosher_label", "verified": true, "default": true, "note": "Single source; US-size spoon assumed for the Canadian label"}
-    ]},
-    {"id": "salt_dc_baking", "name": "Diamond Crystal Baking Salt", "group": "baking", "volume_reliable": true, "conventions": [
-      {"label": "Maker's chart: 1 tsp table = 1.5 tsp", "ratio_to": "salt_table", "ratio": 1.5, "source": "dc_baking_salt", "measure": "volume ratio to table salt", "verified": true, "default": true}
-    ]},
-    {"id": "oil_olive", "name": "Olive oil", "group": "cooking", "rank": 36, "volume_reliable": true, "conventions": [
-      {"label": "USDA, cup", "grams": 216, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "USDA, tbsp", "grams": 14, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true},
-      {"label": "King Arthur", "grams": 50, "measure": "0.25 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "rice_white_raw", "name": "White rice, long grain, uncooked", "group": "cooking", "rank": 37, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 185, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 99, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "cheddar_shredded", "name": "Cheddar, shredded", "group": "cooking", "rank": 38, "volume_reliable": false, "conventions": [
-      {"label": "USDA", "grams": 113, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 113, "measure": "1 cup_us", "source": "ka_chart", "verified": true, "note": "KA row covers cheddar, jack, mozzarella, Swiss"}
-    ]},
-    {"id": "parmesan_grated", "name": "Parmesan, grated", "group": "cooking", "rank": 39, "volume_reliable": false, "conventions": [
-      {"label": "USDA, cup", "grams": 100, "measure": "1 cup_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "USDA, tbsp", "grams": 5, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true},
-      {"label": "King Arthur", "grams": 50, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true}
-    ]},
-    {"id": "peanut_butter", "name": "Peanut butter", "group": "cooking", "rank": 40, "volume_reliable": true, "conventions": [
-      {"label": "USDA", "grams": 16, "measure": "1 tbsp_us", "source": "usda_hg72", "verified": true, "default": true},
-      {"label": "King Arthur", "grams": 135, "measure": "0.5 cup_us", "source": "ka_chart", "verified": true}
-    ]}
+    {
+      "id": "salt_table",
+      "name": "Table salt",
+      "group": "baking",
+      "rank": 1,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "Box label (Morton)",
+          "grams": 1.5,
+          "measure": "0.25 tsp_us",
+          "sodium_mg": 590,
+          "source": "morton_label_table",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "USDA",
+          "grams": 6,
+          "measure": "1 tsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 18,
+          "measure": "1 tbsp_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 23,
+          "measure": "1 tbsp_us",
+          "source": "atk_salt",
+          "verified": true,
+          "note": "Implies 1.56 g/mL; ATK's taste-test page gives 18 g/tbsp (excerpt only)"
+        },
+        {
+          "label": "Measured (Dad Cooks Dinner)",
+          "grams": 76.0,
+          "measure": "0.25 cup_us",
+          "source": "dcd_salt",
+          "verified": true,
+          "note": "Morton table salt; method not stated"
+        },
+        {
+          "label": "MasterClass",
+          "grams": 19,
+          "measure": "1 tbsp_us",
+          "source": "masterclass_salt",
+          "verified": true,
+          "note": "Approximate, no source given"
+        }
+      ]
+    },
+    {
+      "id": "sugar_granulated",
+      "name": "Granulated sugar",
+      "group": "baking",
+      "rank": 2,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 200,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 198,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 198,
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "egg_large",
+      "name": "Large egg",
+      "group": "baking",
+      "rank": 3,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 50,
+          "measure": "1 each",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 50,
+          "measure": "1 each",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "group": "baking",
+      "rank": 4,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, 1 stick",
+          "grams": 113,
+          "measure": "0.5 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true,
+          "note": "stick = 1/2 cup"
+        },
+        {
+          "label": "King Arthur",
+          "grams": 113,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 113,
+          "measure": "8 tbsp_us",
+          "source": "atk_chart",
+          "verified": true
+        },
+        {
+          "label": "USDA, 1 tbsp",
+          "grams": 14,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "flour_ap",
+      "name": "All-purpose / plain flour",
+      "group": "baking",
+      "rank": 5,
+      "volume_reliable": false,
+      "aliases": {
+        "ka": "ka_120",
+        "atk": "atk_142",
+        "sally": "sallys_125"
+      },
+      "conventions": [
+        {
+          "key": "ka_120",
+          "label": "King Arthur, spooned",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "key": "toh_120",
+          "label": "Taste of Home, spooned (table; its text says 125)",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "toh",
+          "verified": true
+        },
+        {
+          "key": "cotswold_120",
+          "label": "Cotswold Flour, unsifted",
+          "grams": 120,
+          "measure": "1 cup (size unstated)",
+          "source": "cotswold",
+          "verified": true
+        },
+        {
+          "key": "cotswold_110",
+          "label": "Cotswold Flour, sifted",
+          "grams": 110,
+          "measure": "1 cup (size unstated)",
+          "source": "cotswold",
+          "verified": true
+        },
+        {
+          "key": "usda_115_sifted",
+          "label": "USDA, sifted then spooned",
+          "grams": 115,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "key": "sallys_118",
+          "label": "Sally's, sifted",
+          "grams": 118,
+          "measure": "1 cup_us",
+          "source": "sallys",
+          "verified": true
+        },
+        {
+          "key": "sallys_125",
+          "label": "Sally's, spooned",
+          "grams": 125,
+          "measure": "1 cup_us",
+          "source": "sallys",
+          "verified": true
+        },
+        {
+          "key": "usda_125",
+          "label": "USDA, spooned, unsifted",
+          "grams": 125,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "also": [
+            "usda_168936"
+          ]
+        },
+        {
+          "key": "chelsea_125",
+          "label": "Chelsea NZ",
+          "grams": 125,
+          "measure": "1 cup (size unstated)",
+          "source": "chelsea",
+          "verified": true
+        },
+        {
+          "key": "delicious_125",
+          "label": "delicious. UK",
+          "grams": 125,
+          "measure": "1 cup (250 mL implied)",
+          "source": "delicious_uk",
+          "verified": true
+        },
+        {
+          "key": "se_128",
+          "label": "Serious Eats, spooned",
+          "grams": 127.6,
+          "stated": "4.5 oz",
+          "measure": "1 cup_us",
+          "source": "seriouseats_aol",
+          "verified": true,
+          "note": "Read via AOL syndication; seriouseats.com blocked"
+        },
+        {
+          "key": "milkstreet_130",
+          "label": "Middle of published values (Milk Street, gentle dip)",
+          "grams": 130,
+          "measure": "1 cup_us",
+          "source": "milkstreet",
+          "verified": true,
+          "default": true
+        },
+        {
+          "key": "joy_130",
+          "label": "Joy of Baking",
+          "grams": 130,
+          "measure": "1 cup_us",
+          "source": "joyofbaking",
+          "verified": true
+        },
+        {
+          "key": "brm_136",
+          "label": "Bob's Red Mill",
+          "grams": 136,
+          "measure": "1 cup_us",
+          "source": "brm_chart",
+          "verified": true
+        },
+        {
+          "key": "atk_142",
+          "label": "ATK, dip and sweep",
+          "grams": 142,
+          "stated": "5 oz",
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true,
+          "also": [
+            "atk_flour"
+          ]
+        },
+        {
+          "key": "aww_150",
+          "label": "Women's Weekly AU",
+          "grams": 150,
+          "measure": "1 cup_metric",
+          "source": "aww",
+          "verified": true
+        },
+        {
+          "key": "olson_150",
+          "label": "Anna Olson CA",
+          "grams": 150,
+          "measure": "1 cup (250 mL stated for liquids only)",
+          "source": "annaolson",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "group": "baking",
+      "rank": 6,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 237,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true,
+          "note": "listed as 8 fl oz"
+        },
+        {
+          "label": "King Arthur",
+          "grams": 227,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "note": "8 oz; an ounce rounding"
+        }
+      ]
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "group": "baking",
+      "rank": 7,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, whole",
+          "grams": 244,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 227,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "note": "8 oz; an ounce rounding"
+        }
+      ]
+    },
+    {
+      "id": "baking_soda",
+      "name": "Baking soda",
+      "group": "baking",
+      "rank": 8,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 5,
+          "measure": "1 tsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 3,
+          "measure": "0.5 tsp_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "vanilla",
+      "name": "Vanilla extract",
+      "group": "baking",
+      "rank": 9,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 4,
+          "measure": "1 tsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 14,
+          "measure": "1 tbsp_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "sugar_brown",
+      "name": "Brown sugar, packed",
+      "group": "baking",
+      "rank": 10,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "USDA, packed",
+          "grams": 220,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 213,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 198,
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true
+        },
+        {
+          "label": "USDA, unpacked",
+          "grams": 145,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "note": "different packing; not a disagreement"
+        }
+      ]
+    },
+    {
+      "id": "oil_vegetable",
+      "name": "Vegetable oil",
+      "group": "baking",
+      "rank": 11,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, canola",
+          "grams": 218,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Milk Street",
+          "grams": 206,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true,
+          "note": "listed as 'Oil, liquid'"
+        },
+        {
+          "label": "King Arthur",
+          "grams": 198,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "baking_powder",
+      "name": "Baking powder",
+      "group": "baking",
+      "rank": 12,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 5,
+          "measure": "1 tsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 4,
+          "measure": "1 tsp_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "cinnamon",
+      "name": "Ground cinnamon",
+      "group": "baking",
+      "rank": 13,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 2,
+          "measure": "1 tsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true,
+          "note": "only opened source"
+        }
+      ]
+    },
+    {
+      "id": "yeast_instant",
+      "name": "Instant yeast",
+      "group": "baking",
+      "rank": 14,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "King Arthur",
+          "grams": 7,
+          "measure": "2.25 tsp_us",
+          "source": "ka_chart",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Red Star, active dry packet",
+          "grams": 7,
+          "measure": "2.25 tsp_us",
+          "source": "redstar_packet",
+          "verified": true,
+          "note": "active dry; Red Star says 1:1 with instant"
+        },
+        {
+          "label": "USDA, active dry",
+          "grams": 4,
+          "measure": "1 tsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "flour_bread",
+      "name": "Bread / strong flour",
+      "group": "baking",
+      "rank": 15,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "key": "ka_120",
+          "label": "King Arthur",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "key": "sallys_130",
+          "label": "Sally's",
+          "grams": 130,
+          "measure": "1 cup_us",
+          "source": "sallys",
+          "verified": true
+        },
+        {
+          "key": "milkstreet_137",
+          "label": "Milk Street",
+          "grams": 137,
+          "measure": "1 cup_us",
+          "source": "milkstreet",
+          "verified": true,
+          "default": true
+        },
+        {
+          "key": "usda_137",
+          "label": "USDA",
+          "grams": 137,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "key": "brm_144",
+          "label": "Bob's Red Mill, spooned",
+          "grams": 144,
+          "measure": "1 cup_us",
+          "source": "brm_chart",
+          "verified": true
+        },
+        {
+          "key": "olson_150",
+          "label": "Anna Olson CA",
+          "grams": 150,
+          "measure": "1 cup (250 mL stated for liquids only)",
+          "source": "annaolson",
+          "verified": true
+        },
+        {
+          "key": "aww_160",
+          "label": "Women's Weekly AU",
+          "grams": 160,
+          "measure": "1 cup_metric",
+          "source": "aww",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "flour_whole_wheat",
+      "name": "Whole wheat / wholemeal flour",
+      "group": "baking",
+      "rank": 16,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "key": "ka_113",
+          "label": "King Arthur (Premium 100%)",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "key": "usda_120",
+          "label": "USDA, stirred, spooned",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "key": "olson_120",
+          "label": "Anna Olson CA",
+          "grams": 120,
+          "measure": "1 cup (250 mL stated for liquids only)",
+          "source": "annaolson",
+          "verified": true
+        },
+        {
+          "key": "toh_130",
+          "label": "Taste of Home",
+          "grams": 130,
+          "measure": "1 cup_us",
+          "source": "toh",
+          "verified": true
+        },
+        {
+          "key": "joy_130",
+          "label": "Joy of Baking",
+          "grams": 130,
+          "measure": "1 cup_us",
+          "source": "joyofbaking",
+          "verified": true
+        },
+        {
+          "key": "milkstreet_140",
+          "label": "Milk Street",
+          "grams": 140,
+          "measure": "1 cup_us",
+          "source": "milkstreet",
+          "verified": true,
+          "default": true
+        },
+        {
+          "key": "brm_152",
+          "label": "Bob's Red Mill",
+          "grams": 152,
+          "measure": "1 cup_us",
+          "source": "brm_chart",
+          "verified": true
+        },
+        {
+          "key": "atk_156",
+          "label": "ATK",
+          "grams": 156,
+          "stated": "5.5 oz",
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "chocolate_chips",
+      "name": "Chocolate chips",
+      "group": "baking",
+      "rank": 17,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, semisweet",
+          "grams": 168,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 170,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "Milk Street",
+          "grams": 164,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "walnuts_chopped",
+      "name": "Walnuts, chopped",
+      "group": "baking",
+      "rank": 18,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "Milk Street",
+          "grams": 112,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "sugar_confectioners",
+      "name": "Confectioners' / icing sugar, unsifted",
+      "group": "baking",
+      "rank": 19,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "cocoa",
+      "name": "Cocoa, unsweetened",
+      "group": "baking",
+      "rank": 20,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 86,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 42,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 85,
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true
+        },
+        {
+          "label": "Milk Street",
+          "grams": 85,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "flour_cake",
+      "name": "Cake flour",
+      "group": "baking",
+      "rank": 21,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "key": "sallys_105",
+          "label": "Sally's, sifted",
+          "grams": 105,
+          "measure": "1 cup_us",
+          "source": "sallys",
+          "verified": true
+        },
+        {
+          "key": "brm_112",
+          "label": "Bob's Red Mill (super-fine)",
+          "grams": 112,
+          "measure": "1 cup_us",
+          "source": "brm_chart",
+          "verified": true
+        },
+        {
+          "key": "atk_113",
+          "label": "ATK",
+          "grams": 113,
+          "stated": "4 oz",
+          "measure": "1 cup_us",
+          "source": "atk_chart",
+          "verified": true
+        },
+        {
+          "key": "sallys_118",
+          "label": "Sally's",
+          "grams": 118,
+          "measure": "1 cup_us",
+          "source": "sallys",
+          "verified": true
+        },
+        {
+          "key": "toh_118",
+          "label": "Taste of Home",
+          "grams": 118,
+          "measure": "1 cup_us",
+          "source": "toh",
+          "verified": true
+        },
+        {
+          "key": "ka_120",
+          "label": "King Arthur (unbleached cake)",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "key": "milkstreet_120",
+          "label": "Milk Street",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "milkstreet",
+          "verified": true,
+          "default": true
+        },
+        {
+          "key": "joy_120",
+          "label": "Joy of Baking",
+          "grams": 120,
+          "measure": "1 cup_us",
+          "source": "joyofbaking",
+          "verified": true
+        },
+        {
+          "key": "olson_65_half",
+          "label": "Anna Olson CA (cake and pastry)",
+          "grams": 65,
+          "measure": "0.5 cup (250 mL stated for liquids only)",
+          "source": "annaolson",
+          "verified": true
+        },
+        {
+          "key": "usda_137",
+          "label": "USDA, unsifted, spooned",
+          "grams": 137,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "note": "Outlier against eight other sources; check against the PDF (T11)"
+        }
+      ]
+    },
+    {
+      "id": "flour_selfraising",
+      "name": "Self-raising / self-rising flour",
+      "group": "baking",
+      "volume_reliable": false,
+      "default_follows": "flour_ap",
+      "conventions": [
+        {
+          "key": "ka_113",
+          "label": "King Arthur",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "key": "toh_124",
+          "label": "Taste of Home",
+          "grams": 124,
+          "measure": "1 cup_us",
+          "source": "toh",
+          "verified": true
+        },
+        {
+          "key": "chelsea_125",
+          "label": "Chelsea NZ",
+          "grams": 125,
+          "measure": "1 cup (size unstated)",
+          "source": "chelsea",
+          "verified": true
+        },
+        {
+          "key": "brm_136",
+          "label": "Bob's Red Mill, spooned",
+          "grams": 136,
+          "measure": "1 cup_us",
+          "source": "brm_chart",
+          "verified": true
+        },
+        {
+          "key": "aww_150",
+          "label": "Women's Weekly AU",
+          "grams": 150,
+          "measure": "1 cup_metric",
+          "source": "aww",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "cream_heavy",
+      "name": "Heavy cream",
+      "group": "baking",
+      "rank": 22,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 238,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 227,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "note": "8 oz; an ounce rounding"
+        }
+      ]
+    },
+    {
+      "id": "honey",
+      "name": "Honey",
+      "group": "baking",
+      "rank": 23,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, cup",
+          "grams": 339,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "USDA, tbsp",
+          "grams": 21,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 21,
+          "measure": "1 tbsp_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "oats_old_fashioned",
+      "name": "Old-fashioned oats",
+      "group": "baking",
+      "rank": 24,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "Quaker label",
+          "grams": 40,
+          "measure": "0.5 cup_us_label",
+          "source": "label_quaker_oats",
+          "verified": true,
+          "default": true,
+          "note": "label cup = 240 mL"
+        },
+        {
+          "label": "King Arthur",
+          "grams": 89,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "buttermilk",
+      "name": "Buttermilk",
+      "group": "baking",
+      "rank": 25,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 245,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 227,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "note": "8 oz; an ounce rounding"
+        }
+      ]
+    },
+    {
+      "id": "sour_cream",
+      "name": "Sour cream",
+      "group": "baking",
+      "rank": 26,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, cup",
+          "grams": 230,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "USDA, tbsp",
+          "grams": 12,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 227,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "cream_cheese",
+      "name": "Cream cheese",
+      "group": "baking",
+      "rank": 27,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "King Arthur",
+          "grams": 227,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Philadelphia label (Canada)",
+          "grams": 30,
+          "measure": "2 tbsp_metric",
+          "source": "label_philly_ca",
+          "verified": true,
+          "note": "15 mL label tablespoon assumed for Canada"
+        }
+      ]
+    },
+    {
+      "id": "coconut_sweetened",
+      "name": "Coconut, sweetened shredded",
+      "group": "baking",
+      "rank": 28,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "King Arthur",
+          "grams": 85,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Milk Street, sweetened flakes",
+          "grams": 70,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true,
+          "note": "flakes, not shreds"
+        },
+        {
+          "label": "USDA, raw shredded, not packed",
+          "grams": 80,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "note": "raw, unsweetened; different product"
+        }
+      ]
+    },
+    {
+      "id": "pecans_chopped",
+      "name": "Pecans, chopped",
+      "group": "baking",
+      "rank": 29,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "King Arthur, diced",
+          "grams": 57,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Milk Street",
+          "grams": 114,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "raisins",
+      "name": "Raisins",
+      "group": "baking",
+      "rank": 30,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "USDA, not packed",
+          "grams": 145,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Milk Street",
+          "grams": 155,
+          "measure": "1 cup_us",
+          "source": "ms_mixins",
+          "verified": true
+        },
+        {
+          "label": "King Arthur, packed",
+          "grams": 85,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "maple_syrup",
+      "name": "Maple syrup",
+      "group": "baking",
+      "rank": 31,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 20,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 156,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "molasses",
+      "name": "Molasses",
+      "group": "baking",
+      "rank": 32,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "King Arthur",
+          "grams": 85,
+          "measure": "0.25 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "USDA, blackstrap",
+          "grams": 328,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "note": "blackstrap, not regular molasses"
+        }
+      ]
+    },
+    {
+      "id": "cornstarch",
+      "name": "Cornstarch / cornflour",
+      "group": "baking",
+      "rank": 33,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 8,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 28,
+          "measure": "0.25 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "Milk Street 2020",
+          "grams": 132,
+          "measure": "1 cup_us",
+          "source": "ms_usual_2020",
+          "verified": false,
+          "note": "search excerpt only"
+        }
+      ]
+    },
+    {
+      "id": "salt_diamond_crystal",
+      "name": "Diamond Crystal kosher salt",
+      "group": "baking",
+      "rank": 34,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "Box label",
+          "grams": 0.7,
+          "measure": "0.25 tsp_us",
+          "sodium_mg": 280,
+          "source": "dc_sellsheet",
+          "also": [
+            "dc_label_retail"
+          ],
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 8,
+          "measure": "1 tbsp_us",
+          "source": "ka_chart",
+          "verified": true
+        },
+        {
+          "label": "Measured 2025 (UC Master Food Preservers)",
+          "grams": 8.2,
+          "measure": "1 tbsp_us",
+          "source": "ucanr_salt",
+          "verified": true,
+          "note": "Kosher Salt Flakes, level, 0.02 g scale"
+        },
+        {
+          "label": "America's Test Kitchen",
+          "grams": 10,
+          "measure": "1 tbsp_us",
+          "source": "atk_salt",
+          "verified": true
+        },
+        {
+          "label": "Measured (Dad Cooks Dinner)",
+          "grams": 45.2,
+          "measure": "0.25 cup_us",
+          "source": "dcd_salt",
+          "verified": true,
+          "note": "Undated; possibly older grain"
+        }
+      ]
+    },
+    {
+      "id": "salt_morton_kosher",
+      "name": "Morton kosher salt",
+      "group": "baking",
+      "rank": 35,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "Box label",
+          "grams": 1.2,
+          "measure": "0.25 tsp_us",
+          "sodium_mg": 480,
+          "source": "morton_label_kosher",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur / ATK",
+          "grams": 16,
+          "measure": "1 tbsp_us",
+          "source": "ka_chart",
+          "also": [
+            "atk_salt"
+          ],
+          "verified": true
+        },
+        {
+          "label": "Measured (Dad Cooks Dinner)",
+          "grams": 62.0,
+          "measure": "0.25 cup_us",
+          "source": "dcd_salt",
+          "verified": true
+        },
+        {
+          "label": "MasterClass",
+          "grams": 15,
+          "measure": "1 tbsp_us",
+          "source": "masterclass_salt",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "salt_fine_sea",
+      "name": "Fine sea salt",
+      "group": "baking",
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "Same as table salt by spoon (Morton chart)",
+          "same_as": "salt_table",
+          "source": "morton_chart",
+          "measure": "volume equivalence up to 1 tbsp",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "La Baleine, measured (UCANR)",
+          "grams": 15.8,
+          "measure": "1 tbsp_us",
+          "source": "ucanr_salt",
+          "verified": true
+        },
+        {
+          "label": "La Baleine, measured (Dad Cooks Dinner)",
+          "grams": 64.8,
+          "measure": "0.25 cup_us",
+          "source": "dcd_salt",
+          "verified": true
+        },
+        {
+          "label": "Kirkland, measured (UCANR)",
+          "grams": 14.9,
+          "measure": "1 tbsp_us",
+          "source": "ucanr_salt",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "salt_maldon",
+      "name": "Flaky sea salt (Maldon)",
+      "group": "baking",
+      "volume_reliable": false,
+      "note": "US label states 1/4 tsp (1.5 g); unverified and inconsistent with measurements. Do not use.",
+      "conventions": [
+        {
+          "label": "Measured (UCANR)",
+          "grams": 9.8,
+          "measure": "1 tbsp_us",
+          "source": "ucanr_salt",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "Measured (Dad Cooks Dinner)",
+          "grams": 33.2,
+          "measure": "0.25 cup_us",
+          "source": "dcd_salt",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "salt_windsor_kosher",
+      "name": "Windsor kosher salt (Canada)",
+      "group": "baking",
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "Box label",
+          "grams": 1.1,
+          "measure": "0.25 tsp_us",
+          "sodium_mg": 440,
+          "source": "windsor_kosher_label",
+          "verified": true,
+          "default": true,
+          "note": "Single source; US-size spoon assumed for the Canadian label"
+        }
+      ]
+    },
+    {
+      "id": "salt_dc_baking",
+      "name": "Diamond Crystal Baking Salt",
+      "group": "baking",
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "Maker's chart: 1 tsp table = 1.5 tsp",
+          "ratio_to": "salt_table",
+          "ratio": 1.5,
+          "source": "dc_baking_salt",
+          "measure": "volume ratio to table salt",
+          "verified": true,
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "oil_olive",
+      "name": "Olive oil",
+      "group": "cooking",
+      "rank": 36,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA, cup",
+          "grams": 216,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "USDA, tbsp",
+          "grams": 14,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 50,
+          "measure": "0.25 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "rice_white_raw",
+      "name": "White rice, long grain, uncooked",
+      "group": "cooking",
+      "rank": 37,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 185,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 99,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "cheddar_shredded",
+      "name": "Cheddar, shredded",
+      "group": "cooking",
+      "rank": 38,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 113,
+          "measure": "1 cup_us",
+          "source": "ka_chart",
+          "verified": true,
+          "note": "KA row covers cheddar, jack, mozzarella, Swiss"
+        }
+      ]
+    },
+    {
+      "id": "parmesan_grated",
+      "name": "Parmesan, grated",
+      "group": "cooking",
+      "rank": 39,
+      "volume_reliable": false,
+      "conventions": [
+        {
+          "label": "USDA, cup",
+          "grams": 100,
+          "measure": "1 cup_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "USDA, tbsp",
+          "grams": 5,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 50,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "peanut_butter",
+      "name": "Peanut butter",
+      "group": "cooking",
+      "rank": 40,
+      "volume_reliable": true,
+      "conventions": [
+        {
+          "label": "USDA",
+          "grams": 16,
+          "measure": "1 tbsp_us",
+          "source": "usda_hg72",
+          "verified": true,
+          "default": true
+        },
+        {
+          "label": "King Arthur",
+          "grams": 135,
+          "measure": "0.5 cup_us",
+          "source": "ka_chart",
+          "verified": true
+        }
+      ]
+    }
   ],
   "rules": [
-    {"id": "yeast_fresh_to_dry", "factor": 0.33, "source": "ka_yeast", "verified": true, "note": "Applies to active dry and instant alike; other sources use separate factors (idea 9, open)."},
-    {"id": "fan_oven_f", "subtract_f": 25, "measure": "conventional recipe F to fan/convection setting", "source": ["ka_convection", "ge_auto_convert"], "verified": true, "user_options_f": [25, 50]},
-    {"id": "fan_oven_c", "subtract_c": 20, "measure": "conventional recipe C to fan setting", "source": ["which_oven", "hoover_fan", "nigella_fan", "bakeclub_fan"], "verified": true, "user_options_c": [10, 15, 20, 25],
-     "alternatives": [
-       {"range_c": [10, 20], "source": ["ww_au_oven", "gbc_conv", "maggiebeer_fan", "nzww_fan"], "verified": true},
-       {"range_c": [15, 20], "source": "cda_cd200", "verified": true},
-       {"range_c": [20, 25], "source": "zanussi_zhf865", "verified": true},
-       {"percent": 20, "source": "indesit_kg6407", "verified": true},
-       {"subtract_c": 15, "source": "currys_oven", "verified": true, "note": "text only; its own chart uses 20"}
-     ],
-     "note": "Not a conversion of fan_oven_f: 25 F = 13.9 C, 20 C = 36 F. Each scale keeps its own convention."},
-    {"id": "salt_swap", "method": "equal_weight", "note": "Swap = from g/mL divided by to g/mL, using the conventions the user has selected.",
-     "published_ratios_for_text": [
-       {"ratio": "1 table = 1.25 Morton kosher", "source": "morton_chart", "verified": true},
-       {"ratio": "1 table = 1.5 Morton kosher = 2 Diamond Crystal", "source": "atk_salt", "verified": true},
-       {"ratio": "1 table = 2 Diamond Crystal = 1.5 DC Baking Salt", "source": "dc_baking_salt", "verified": true},
-       {"ratio": "1 table = 2.5 Maldon", "source": "milkstreet_salt", "verified": true}
-     ]}
+    {
+      "id": "yeast_fresh_to_dry",
+      "factor": 0.33,
+      "source": "ka_yeast",
+      "verified": true,
+      "note": "Applies to active dry and instant alike; other sources use separate factors (idea 9, open)."
+    },
+    {
+      "id": "fan_oven_f",
+      "subtract_f": 25,
+      "measure": "conventional recipe F to fan/convection setting",
+      "source": [
+        "ka_convection",
+        "ge_auto_convert"
+      ],
+      "verified": true,
+      "user_options_f": [
+        25,
+        50
+      ]
+    },
+    {
+      "id": "fan_oven_c",
+      "subtract_c": 20,
+      "measure": "conventional recipe C to fan setting",
+      "source": [
+        "which_oven",
+        "hoover_fan",
+        "nigella_fan",
+        "bakeclub_fan"
+      ],
+      "verified": true,
+      "user_options_c": [
+        10,
+        15,
+        20,
+        25
+      ],
+      "alternatives": [
+        {
+          "range_c": [
+            10,
+            20
+          ],
+          "source": [
+            "ww_au_oven",
+            "gbc_conv",
+            "maggiebeer_fan",
+            "nzww_fan"
+          ],
+          "verified": true
+        },
+        {
+          "range_c": [
+            15,
+            20
+          ],
+          "source": "cda_cd200",
+          "verified": true
+        },
+        {
+          "range_c": [
+            20,
+            25
+          ],
+          "source": "zanussi_zhf865",
+          "verified": true
+        },
+        {
+          "percent": 20,
+          "source": "indesit_kg6407",
+          "verified": true
+        },
+        {
+          "subtract_c": 15,
+          "source": "currys_oven",
+          "verified": true,
+          "note": "text only; its own chart uses 20"
+        }
+      ],
+      "note": "Not a conversion of fan_oven_f: 25 F = 13.9 C, 20 C = 36 F. Each scale keeps its own convention."
+    },
+    {
+      "id": "salt_swap",
+      "method": "equal_weight",
+      "note": "Swap = from g/mL divided by to g/mL, using the conventions the user has selected.",
+      "published_ratios_for_text": [
+        {
+          "ratio": "1 table = 1.25 Morton kosher",
+          "source": "morton_chart",
+          "verified": true
+        },
+        {
+          "ratio": "1 table = 1.5 Morton kosher = 2 Diamond Crystal",
+          "source": "atk_salt",
+          "verified": true
+        },
+        {
+          "ratio": "1 table = 2 Diamond Crystal = 1.5 DC Baking Salt",
+          "source": "dc_baking_salt",
+          "verified": true
+        },
+        {
+          "ratio": "1 table = 2.5 Maldon",
+          "source": "milkstreet_salt",
+          "verified": true
+        }
+      ]
+    }
   ],
   "gas_marks": {
-    "definition": {"mark1_f": 275, "step_f": 25, "below_1": "halves per 25 F step", "source": "wiki_gas_mark", "verified": true, "note": "Wikipedia flags mark 1 = 275 F as citation needed."},
+    "definition": {
+      "mark1_f": 275,
+      "step_f": 25,
+      "below_1": "halves per 25 F step",
+      "source": "wiki_gas_mark",
+      "verified": true,
+      "note": "Wikipedia flags mark 1 = 275 F as citation needed."
+    },
     "note": "F is exact by definition. C is the printed recipe convention, not what a given gas oven reaches.",
     "rows": [
-      {"mark": 0.25, "f": 225, "c": 110, "fan_c": 90, "source": ["wiki_gas_mark"], "verified": true, "fan_c_note": "derived: c minus fan_oven_c", "disputes": [{"c": 120, "source": "smeg_uk_oven"}, {"c": "100 or below", "source": "gbc_conv"}]},
-      {"mark": 0.5, "f": 250, "c": 120, "fan_c": 100, "source": ["hoover_fan", "wiki_gas_mark", "gbc_conv", "ww_au_oven"], "verified": true, "disputes": [{"c": 130, "source": ["smeg_uk_oven", "currys_oven"]}]},
-      {"mark": 1, "f": 275, "c": 140, "fan_c": 120, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "smeg_uk_oven", "gbc_conv"], "verified": true, "disputes": [{"c": 135, "source": "wiki_gas_mark"}, {"c": 150, "source": "ww_au_oven"}]},
-      {"mark": 2, "f": 300, "c": 150, "fan_c": 130, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "gbc_conv"], "verified": true},
-      {"mark": 3, "f": 325, "c": 160, "fan_c": 140, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "smeg_uk_oven", "gbc_conv", "ww_au_oven"], "verified": true, "disputes": [{"c": 170, "source": ["wiki_gas_mark", "currys_oven"]}, {"c": 165, "source": "bakeschool_350"}]},
-      {"mark": 4, "f": 350, "c": 180, "fan_c": 160, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "gbc_conv"], "verified": true, "disputes": [{"c": 175, "source": "bakeschool_350"}]},
-      {"mark": 5, "f": 375, "c": 190, "fan_c": 170, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "gbc_conv"], "verified": true},
-      {"mark": 6, "f": 400, "c": 200, "fan_c": 180, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "gbc_conv"], "verified": true},
-      {"mark": 7, "f": 425, "c": 220, "fan_c": 200, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "gbc_conv"], "verified": true},
-      {"mark": 8, "f": 450, "c": 230, "fan_c": 210, "source": ["which_oven", "hoover_fan", "aeg_uk_oven", "gbc_conv"], "verified": true},
-      {"mark": 9, "f": 475, "c": 240, "fan_c": 220, "source": ["which_oven", "hoover_fan", "smeg_uk_oven", "wiki_gas_mark", "ww_au_oven"], "verified": true, "disputes": [{"c": "250 or above", "source": "gbc_conv"}, {"c": 245, "source": "bakeschool_350"}, {"fan_c": 210, "source": "aeg_uk_oven"}]},
-      {"mark": 10, "f": 500, "c": 260, "fan_c": 240, "source": ["wiki_gas_mark"], "verified": true, "note": "less common; fan_c derived"}
+      {
+        "mark": 0.25,
+        "f": 225,
+        "c": 110,
+        "fan_c": 90,
+        "source": [
+          "wiki_gas_mark"
+        ],
+        "verified": true,
+        "fan_c_note": "derived: c minus fan_oven_c",
+        "disputes": [
+          {
+            "c": 120,
+            "source": "smeg_uk_oven"
+          },
+          {
+            "c": "100 or below",
+            "source": "gbc_conv"
+          }
+        ]
+      },
+      {
+        "mark": 0.5,
+        "f": 250,
+        "c": 120,
+        "fan_c": 100,
+        "source": [
+          "hoover_fan",
+          "wiki_gas_mark",
+          "gbc_conv",
+          "ww_au_oven"
+        ],
+        "verified": true,
+        "disputes": [
+          {
+            "c": 130,
+            "source": [
+              "smeg_uk_oven",
+              "currys_oven"
+            ]
+          }
+        ]
+      },
+      {
+        "mark": 1,
+        "f": 275,
+        "c": 140,
+        "fan_c": 120,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "smeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true,
+        "disputes": [
+          {
+            "c": 135,
+            "source": "wiki_gas_mark"
+          },
+          {
+            "c": 150,
+            "source": "ww_au_oven"
+          }
+        ]
+      },
+      {
+        "mark": 2,
+        "f": 300,
+        "c": 150,
+        "fan_c": 130,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true
+      },
+      {
+        "mark": 3,
+        "f": 325,
+        "c": 160,
+        "fan_c": 140,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "smeg_uk_oven",
+          "gbc_conv",
+          "ww_au_oven"
+        ],
+        "verified": true,
+        "disputes": [
+          {
+            "c": 170,
+            "source": [
+              "wiki_gas_mark",
+              "currys_oven"
+            ]
+          },
+          {
+            "c": 165,
+            "source": "bakeschool_350"
+          }
+        ]
+      },
+      {
+        "mark": 4,
+        "f": 350,
+        "c": 180,
+        "fan_c": 160,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true,
+        "disputes": [
+          {
+            "c": 175,
+            "source": "bakeschool_350"
+          }
+        ]
+      },
+      {
+        "mark": 5,
+        "f": 375,
+        "c": 190,
+        "fan_c": 170,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true
+      },
+      {
+        "mark": 6,
+        "f": 400,
+        "c": 200,
+        "fan_c": 180,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true
+      },
+      {
+        "mark": 7,
+        "f": 425,
+        "c": 220,
+        "fan_c": 200,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true
+      },
+      {
+        "mark": 8,
+        "f": 450,
+        "c": 230,
+        "fan_c": 210,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "aeg_uk_oven",
+          "gbc_conv"
+        ],
+        "verified": true
+      },
+      {
+        "mark": 9,
+        "f": 475,
+        "c": 240,
+        "fan_c": 220,
+        "source": [
+          "which_oven",
+          "hoover_fan",
+          "smeg_uk_oven",
+          "wiki_gas_mark",
+          "ww_au_oven"
+        ],
+        "verified": true,
+        "disputes": [
+          {
+            "c": "250 or above",
+            "source": "gbc_conv"
+          },
+          {
+            "c": 245,
+            "source": "bakeschool_350"
+          },
+          {
+            "fan_c": 210,
+            "source": "aeg_uk_oven"
+          }
+        ]
+      },
+      {
+        "mark": 10,
+        "f": 500,
+        "c": 260,
+        "fan_c": 240,
+        "source": [
+          "wiki_gas_mark"
+        ],
+        "verified": true,
+        "note": "less common; fan_c derived"
+      }
     ]
   },
   "oven_dial_pairs": {
     "measure": "F and C printed side by side by publishers (conventional oven)",
-    "pairs": [[225, 110], [250, 120], [275, 140], [300, 150], [325, 160], [350, 180], [375, 190], [400, 200], [425, 220], [450, 230], [475, 240], [500, 260]],
-    "source": ["which_oven", "hoover_fan", "recipetin_pair", "wiki_gas_mark"], "verified": true,
+    "pairs": [
+      [
+        225,
+        110
+      ],
+      [
+        250,
+        120
+      ],
+      [
+        275,
+        140
+      ],
+      [
+        300,
+        150
+      ],
+      [
+        325,
+        160
+      ],
+      [
+        350,
+        180
+      ],
+      [
+        375,
+        190
+      ],
+      [
+        400,
+        200
+      ],
+      [
+        425,
+        220
+      ],
+      [
+        450,
+        230
+      ],
+      [
+        475,
+        240
+      ],
+      [
+        500,
+        260
+      ]
+    ],
+    "source": [
+      "which_oven",
+      "hoover_fan",
+      "recipetin_pair",
+      "wiki_gas_mark"
+    ],
+    "verified": true,
     "off_table_rule": "round the exact value to the nearest 5 (judgment)",
-    "disputes": [{"f": 350, "c": 175, "source": "bakeschool_350"}, {"f": 325, "c": 170, "source": "wiki_gas_mark"}]
+    "disputes": [
+      {
+        "f": 350,
+        "c": 175,
+        "source": "bakeschool_350"
+      },
+      {
+        "f": 325,
+        "c": 170,
+        "source": "wiki_gas_mark"
+      }
+    ]
   },
   "known_answer_tests": [
-    {"id": "U1", "input": "1 cup_us -> mL", "expect": "236.5882365", "source": "nist_hb44_c"},
-    {"id": "U2", "input": "1 cup_us_label -> mL", "expect": "240", "source": "cfr_101_9"},
-    {"id": "U3", "input": "1 cup_metric -> mL", "expect": "250", "source": "ca_sfcr_241"},
-    {"id": "U4", "input": "1 tbsp_au -> mL", "expect": "20", "source": "aww_conversions"},
-    {"id": "U5", "input": "1 cup_metric -> tbsp_au", "expect": "12.5", "source": "U3 and U4"},
-    {"id": "U6", "input": "1 tbsp_us -> tsp_us", "expect": "3 exactly", "source": "nist_hb44_c"},
-    {"id": "U7", "input": "1 tbsp_us -> mL", "expect": "14.78676478125", "source": "nist_hb44_c"},
-    {"id": "U8", "input": "1 floz_imperial -> mL", "expect": "28.4130625", "source": "uk_wma_sch1"},
-    {"id": "U9", "input": "1 gal_us -> mL", "expect": "3785.411784", "source": "nist_hb44_c"},
-    {"id": "U10", "input": "16 oz -> g", "expect": "453.59237", "source": "nist_hb44_c"},
-    {"id": "U11", "input": "1 cup_us -> cup_metric", "expect": "0.946352946", "source": "U1 and U3"},
-    {"id": "U12", "input": "1/3 cup_us -> measurable", "expect": "5 tbsp + 1 tsp", "source": "nist_hb44_c"},
-    {"id": "F1", "input": "2 cup_us flour_ap (default)", "expect": "260 g", "source": "milkstreet"},
-    {"id": "F2", "input": "2 cup_us flour_ap, ka_120", "expect": "240 g", "source": "ka_chart"},
-    {"id": "F3", "input": "2 cup_us flour_ap, atk_142", "expect": "284 g", "source": "atk_chart"},
-    {"id": "F4", "input": "1 cup_metric flour_ap (default)", "expect": "137 g (137.37)", "source": "milkstreet"},
-    {"id": "F5", "input": "1 cup_metric flour_ap, aww_150", "expect": "150 g", "source": "aww"},
-    {"id": "F6", "input": "1 cup_us flour_ap, aww_150", "expect": "142 g (141.95)", "source": "aww"},
-    {"id": "F7", "input": "1 cup_us_label flour_ap (default)", "expect": "132 g (131.87)", "source": "milkstreet"},
-    {"id": "F8", "input": "1 cup_metric flour_ap, ka_120", "expect": "127 g (126.80)", "source": "ka_chart"},
-    {"id": "F9", "input": "1 cup_us flour_ap, se_128", "expect": "128 g (127.6)", "source": "seriouseats_aol"},
-    {"id": "F10", "input": "3 cup_us flour_bread, brm_144", "expect": "432 g", "source": "brm_chart"},
-    {"id": "F11", "input": "260 g flour_ap -> cup_us (default)", "expect": "2 cups", "source": "milkstreet"},
-    {"id": "F12", "input": "300 g flour_ap -> cup_metric, aww_150", "expect": "2 cups", "source": "aww"},
-    {"id": "F13", "input": "1 cup_us flour_ap, usda_125", "expect": "125 g", "source": "usda_hg72"},
-    {"id": "I1", "input": "2 cup_us sugar_granulated, King Arthur", "expect": "396 g", "source": "ka_chart"},
-    {"id": "I2", "input": "1 cup_us sugar_granulated (default)", "expect": "200 g", "source": "usda_hg72"},
-    {"id": "I3", "input": "1 cup_us sugar_brown (default, USDA packed)", "expect": "220 g", "source": "usda_hg72"},
-    {"id": "I4", "input": "1 cup_us honey, King Arthur (21 g per tbsp)", "expect": "336 g", "source": "ka_chart"},
-    {"id": "I5", "input": "1 cup_us milk (default)", "expect": "244 g", "source": "usda_hg72"},
-    {"id": "I6", "input": "1 cup_metric milk (default)", "expect": "258 g (257.83)", "source": "usda_hg72"},
-    {"id": "I7", "input": "2.25 tsp_us yeast_instant (default)", "expect": "7 g", "source": "ka_chart"},
-    {"id": "I8", "input": "1 cup_us chocolate_chips, Milk Street", "expect": "164 g", "source": "ms_mixins"},
-    {"id": "I9", "input": "0.5 cup_us peanut_butter, King Arthur", "expect": "135 g", "source": "ka_chart"},
-    {"id": "I10", "input": "1 cup_us cocoa, ATK", "expect": "85 g", "source": "atk_chart"},
-    {"id": "I11", "input": "1 tbsp_us oil_olive, USDA tbsp", "expect": "14 g", "source": "usda_hg72"},
-    {"id": "I12", "input": "0.5 cup_us_label oats_old_fashioned (default)", "expect": "40 g", "source": "label_quaker_oats"},
-    {"id": "I13", "input": "1 cup_us oats_old_fashioned (default)", "expect": "79 g (78.86)", "source": "label_quaker_oats"},
-    {"id": "I14", "input": "1 cup_us water (default)", "expect": "237 g", "source": "usda_hg72"},
-    {"id": "I15", "input": "1 stick butter", "expect": "113 g", "source": "usda_hg72"},
-    {"id": "S1", "input": "1 tbsp_us salt_table (default, label)", "expect": "18.0 g", "source": "morton_label_table"},
-    {"id": "S2", "input": "1 tsp_us salt_morton_kosher (default, label)", "expect": "4.8 g", "source": "morton_label_kosher"},
-    {"id": "S3", "input": "1 tsp_us salt_diamond_crystal (default, label)", "expect": "2.8 g", "source": "dc_sellsheet"},
-    {"id": "S4", "input": "1 tsp salt_table -> salt_morton_kosher, equal weight (labels)", "expect": "1.25 tsp", "source": "labels; matches morton_chart"},
-    {"id": "S5", "input": "1 tsp salt_table -> salt_diamond_crystal, equal weight (labels)", "expect": "2.143 tsp, shown as 2 1/8 tsp", "source": "labels"},
-    {"id": "S6", "input": "1 tbsp_us salt_table, America's Test Kitchen", "expect": "23 g", "source": "atk_salt"},
-    {"id": "S7", "input": "1 tbsp_us salt_diamond_crystal, King Arthur", "expect": "8 g", "source": "ka_chart"},
-    {"id": "S8", "input": "1 tbsp_metric salt_table (default, label)", "expect": "18.3 g (18.26)", "source": "morton_label_table"},
-    {"id": "S9", "input": "1 tbsp salt_morton_kosher (KA) -> salt_diamond_crystal (KA), equal weight", "expect": "2 tbsp", "source": "ka_chart"},
-    {"id": "S10", "input": "10 g salt_diamond_crystal (default) -> tsp_us", "expect": "3.57 tsp", "source": "dc_sellsheet"},
-    {"id": "O1", "input": "350 F", "expect": "dial 180 C, exact 176.7 C, gas 4, fan 325 F / 160 C", "source": "which_oven, hoover_fan, ka_convection"},
-    {"id": "O2", "input": "180 C", "expect": "dial 350 F, exact 356 F, fan 160 C", "source": "which_oven, recipetin_pair"},
-    {"id": "O3", "input": "gas 4", "expect": "350 F, 180 C, fan 160 C", "source": "which_oven, hoover_fan, aeg_uk_oven"},
-    {"id": "O4", "input": "gas 1/2", "expect": "250 F, 120 C", "source": "hoover_fan, wiki_gas_mark"},
-    {"id": "O5", "input": "gas 9", "expect": "475 F, 240 C, fan 220 C", "source": "which_oven, hoover_fan"},
-    {"id": "O6", "input": "220 C", "expect": "gas 7, 425 F, fan 200 C", "source": "which_oven, hoover_fan, gbc_conv"},
-    {"id": "O7", "input": "170 C", "expect": "gas 3-4", "source": "disputed: smeg_uk_oven 3.5, wiki_gas_mark 3"},
-    {"id": "O8", "input": "325 F", "expect": "dial 160 C", "source": "which_oven, hoover_fan (wiki_gas_mark says 170)"},
-    {"id": "O9", "input": "375 F fan", "expect": "350 F / 170 C", "source": "ka_convection, which_oven"},
-    {"id": "O10", "input": "fan, 200 C", "expect": "180 C", "source": "hoover_fan"},
-    {"id": "O11", "input": "gas 1", "expect": "275 F, 140 C", "source": "which_oven, hoover_fan, gbc_conv"},
-    {"id": "O12", "input": "gas 2.5", "expect": "no result", "source": "not a printed mark"},
-    {"id": "O13", "input": "365 F (off the table)", "expect": "dial 185 C, exact 185.0 C", "source": "off_table_rule"}
+    {
+      "id": "U1",
+      "input": "1 cup_us -> mL",
+      "expect": "236.5882365",
+      "source": "nist_hb44_c"
+    },
+    {
+      "id": "U2",
+      "input": "1 cup_us_label -> mL",
+      "expect": "240",
+      "source": "cfr_101_9"
+    },
+    {
+      "id": "U3",
+      "input": "1 cup_metric -> mL",
+      "expect": "250",
+      "source": "ca_sfcr_241"
+    },
+    {
+      "id": "U4",
+      "input": "1 tbsp_au -> mL",
+      "expect": "20",
+      "source": "aww_conversions"
+    },
+    {
+      "id": "U5",
+      "input": "1 cup_metric -> tbsp_au",
+      "expect": "12.5",
+      "source": "U3 and U4"
+    },
+    {
+      "id": "U6",
+      "input": "1 tbsp_us -> tsp_us",
+      "expect": "3 exactly",
+      "source": "nist_hb44_c"
+    },
+    {
+      "id": "U7",
+      "input": "1 tbsp_us -> mL",
+      "expect": "14.78676478125",
+      "source": "nist_hb44_c"
+    },
+    {
+      "id": "U8",
+      "input": "1 floz_imperial -> mL",
+      "expect": "28.4130625",
+      "source": "uk_wma_sch1"
+    },
+    {
+      "id": "U9",
+      "input": "1 gal_us -> mL",
+      "expect": "3785.411784",
+      "source": "nist_hb44_c"
+    },
+    {
+      "id": "U10",
+      "input": "16 oz -> g",
+      "expect": "453.59237",
+      "source": "nist_hb44_c"
+    },
+    {
+      "id": "U11",
+      "input": "1 cup_us -> cup_metric",
+      "expect": "0.946352946",
+      "source": "U1 and U3"
+    },
+    {
+      "id": "U12",
+      "input": "1/3 cup_us -> measurable",
+      "expect": "5 tbsp + 1 tsp",
+      "source": "nist_hb44_c"
+    },
+    {
+      "id": "F1",
+      "input": "2 cup_us flour_ap (default)",
+      "expect": "260 g",
+      "source": "milkstreet"
+    },
+    {
+      "id": "F2",
+      "input": "2 cup_us flour_ap, ka_120",
+      "expect": "240 g",
+      "source": "ka_chart"
+    },
+    {
+      "id": "F3",
+      "input": "2 cup_us flour_ap, atk_142",
+      "expect": "284 g",
+      "source": "atk_chart"
+    },
+    {
+      "id": "F4",
+      "input": "1 cup_metric flour_ap (default)",
+      "expect": "137 g (137.37)",
+      "source": "milkstreet"
+    },
+    {
+      "id": "F5",
+      "input": "1 cup_metric flour_ap, aww_150",
+      "expect": "150 g",
+      "source": "aww"
+    },
+    {
+      "id": "F6",
+      "input": "1 cup_us flour_ap, aww_150",
+      "expect": "142 g (141.95)",
+      "source": "aww"
+    },
+    {
+      "id": "F7",
+      "input": "1 cup_us_label flour_ap (default)",
+      "expect": "132 g (131.87)",
+      "source": "milkstreet"
+    },
+    {
+      "id": "F8",
+      "input": "1 cup_metric flour_ap, ka_120",
+      "expect": "127 g (126.80)",
+      "source": "ka_chart"
+    },
+    {
+      "id": "F9",
+      "input": "1 cup_us flour_ap, se_128",
+      "expect": "128 g (127.6)",
+      "source": "seriouseats_aol"
+    },
+    {
+      "id": "F10",
+      "input": "3 cup_us flour_bread, brm_144",
+      "expect": "432 g",
+      "source": "brm_chart"
+    },
+    {
+      "id": "F11",
+      "input": "260 g flour_ap -> cup_us (default)",
+      "expect": "2.00 cups",
+      "source": "milkstreet"
+    },
+    {
+      "id": "F12",
+      "input": "300 g flour_ap -> cup_metric, aww_150",
+      "expect": "2.00 cups",
+      "source": "aww"
+    },
+    {
+      "id": "F13",
+      "input": "1 cup_us flour_ap, usda_125",
+      "expect": "125 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I1",
+      "input": "2 cup_us sugar_granulated, King Arthur",
+      "expect": "396 g",
+      "source": "ka_chart"
+    },
+    {
+      "id": "I2",
+      "input": "1 cup_us sugar_granulated (default)",
+      "expect": "200 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I3",
+      "input": "1 cup_us sugar_brown (default, USDA packed)",
+      "expect": "220 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I4",
+      "input": "1 cup_us honey, King Arthur (21 g per tbsp)",
+      "expect": "336 g",
+      "source": "ka_chart"
+    },
+    {
+      "id": "I5",
+      "input": "1 cup_us milk (default)",
+      "expect": "244 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I6",
+      "input": "1 cup_metric milk (default)",
+      "expect": "258 g (257.83)",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I7",
+      "input": "2.25 tsp_us yeast_instant (default)",
+      "expect": "7 g",
+      "source": "ka_chart"
+    },
+    {
+      "id": "I8",
+      "input": "1 cup_us chocolate_chips, Milk Street",
+      "expect": "164 g",
+      "source": "ms_mixins"
+    },
+    {
+      "id": "I9",
+      "input": "0.5 cup_us peanut_butter, King Arthur",
+      "expect": "135 g",
+      "source": "ka_chart"
+    },
+    {
+      "id": "I10",
+      "input": "1 cup_us cocoa, ATK",
+      "expect": "85 g",
+      "source": "atk_chart"
+    },
+    {
+      "id": "I11",
+      "input": "1 tbsp_us oil_olive, USDA tbsp",
+      "expect": "14 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I12",
+      "input": "0.5 cup_us_label oats_old_fashioned (default)",
+      "expect": "40 g",
+      "source": "label_quaker_oats"
+    },
+    {
+      "id": "I13",
+      "input": "1 cup_us oats_old_fashioned (default)",
+      "expect": "79 g (78.86)",
+      "source": "label_quaker_oats"
+    },
+    {
+      "id": "I14",
+      "input": "1 cup_us water (default)",
+      "expect": "237 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "I15",
+      "input": "1 stick butter",
+      "expect": "113 g",
+      "source": "usda_hg72"
+    },
+    {
+      "id": "S1",
+      "input": "1 tbsp_us salt_table (default, label)",
+      "expect": "18.0 g",
+      "source": "morton_label_table"
+    },
+    {
+      "id": "S2",
+      "input": "1 tsp_us salt_morton_kosher (default, label)",
+      "expect": "4.8 g",
+      "source": "morton_label_kosher"
+    },
+    {
+      "id": "S3",
+      "input": "1 tsp_us salt_diamond_crystal (default, label)",
+      "expect": "2.8 g",
+      "source": "dc_sellsheet"
+    },
+    {
+      "id": "S4",
+      "input": "1 tsp salt_table -> salt_morton_kosher, equal weight (labels)",
+      "expect": "1.25 tsp",
+      "source": "labels; matches morton_chart"
+    },
+    {
+      "id": "S5",
+      "input": "1 tsp salt_table -> salt_diamond_crystal, equal weight (labels)",
+      "expect": "2.143 tsp, shown as 2 1/8 tsp",
+      "source": "labels"
+    },
+    {
+      "id": "S6",
+      "input": "1 tbsp_us salt_table, America's Test Kitchen",
+      "expect": "23 g",
+      "source": "atk_salt"
+    },
+    {
+      "id": "S7",
+      "input": "1 tbsp_us salt_diamond_crystal, King Arthur",
+      "expect": "8 g",
+      "source": "ka_chart"
+    },
+    {
+      "id": "S8",
+      "input": "1 tbsp_metric salt_table (default, label)",
+      "expect": "18.3 g (18.26)",
+      "source": "morton_label_table"
+    },
+    {
+      "id": "S9",
+      "input": "1 tbsp salt_morton_kosher (KA) -> salt_diamond_crystal (KA), equal weight",
+      "expect": "2 tbsp",
+      "source": "ka_chart"
+    },
+    {
+      "id": "S10",
+      "input": "10 g salt_diamond_crystal (default) -> tsp_us",
+      "expect": "3.57 tsp",
+      "source": "dc_sellsheet"
+    },
+    {
+      "id": "O1",
+      "input": "350 F",
+      "expect": "dial 180 C, exact 176.7 C, gas 4, fan 325 F / 160 C",
+      "source": "which_oven, hoover_fan, ka_convection"
+    },
+    {
+      "id": "O2",
+      "input": "180 C",
+      "expect": "dial 350 F, exact 356 F, fan 160 C",
+      "source": "which_oven, recipetin_pair"
+    },
+    {
+      "id": "O3",
+      "input": "gas 4",
+      "expect": "350 F, 180 C, fan 160 C",
+      "source": "which_oven, hoover_fan, aeg_uk_oven"
+    },
+    {
+      "id": "O4",
+      "input": "gas 1/2",
+      "expect": "250 F, 120 C",
+      "source": "hoover_fan, wiki_gas_mark"
+    },
+    {
+      "id": "O5",
+      "input": "gas 9",
+      "expect": "475 F, 240 C, fan 220 C",
+      "source": "which_oven, hoover_fan"
+    },
+    {
+      "id": "O6",
+      "input": "220 C",
+      "expect": "gas 7, 425 F, fan 200 C",
+      "source": "which_oven, hoover_fan, gbc_conv"
+    },
+    {
+      "id": "O7",
+      "input": "170 C",
+      "expect": "gas 3-4",
+      "source": "disputed: smeg_uk_oven 3.5, wiki_gas_mark 3"
+    },
+    {
+      "id": "O8",
+      "input": "325 F",
+      "expect": "dial 160 C",
+      "source": "which_oven, hoover_fan (wiki_gas_mark says 170)"
+    },
+    {
+      "id": "O9",
+      "input": "375 F fan",
+      "expect": "350 F / 170 C",
+      "source": "ka_convection, which_oven"
+    },
+    {
+      "id": "O10",
+      "input": "fan, 200 C",
+      "expect": "180 C",
+      "source": "hoover_fan"
+    },
+    {
+      "id": "O11",
+      "input": "gas 1",
+      "expect": "275 F, 140 C",
+      "source": "which_oven, hoover_fan, gbc_conv"
+    },
+    {
+      "id": "O12",
+      "input": "gas 2.5",
+      "expect": "no result",
+      "source": "not a printed mark"
+    },
+    {
+      "id": "O13",
+      "input": "365 F (off the table)",
+      "expect": "dial 185 C, exact 185.0 C",
+      "source": "off_table_rule"
+    }
   ]
 }

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>kitchen-converter tests</title>
+<link rel="icon" href="data:,">
 <style>
   :root { --paper: #f3f3ef; --ink: #1a1915; --mute: #66635a; --rule: #d6d4cb; --pass: #1d6b34; --fail: #b3261a; --pend: #8a5a00; }
   @media (prefers-color-scheme: dark) { :root { --paper: #181714; --ink: #ece9df; --mute: #a39e90; --rule: #37352e; --pass: #6fd08c; --fail: #ff7a66; --pend: #f2c92e; } }
@@ -53,6 +54,8 @@
 <script src="core.js"></script>
 <script src="oven.js"></script>
 <script src="kitchen.js"></script>
+<script src="parse.js"></script>
+<script src="answer.js"></script>
 <script src="tests.js"></script>
 <script>
 (function () {
@@ -73,6 +76,7 @@
     return r.json();
   }).then(function (data) {
     var env = { UC: UC, Oven: Oven, K: Kitchen.create(data) };
+    env.P = KParse.create(env.K); env.A = KAnswer.create(env.K, Oven, env.P);
     var results = KCTests.run(env), n = KCTests.count(results);
     $('sum').innerHTML = results.length + ' tests: <span class="pass">' + n.PASS + ' pass</span> · <span class="fail">' + n.FAIL +
       ' fail</span> · <span class="pend">' + n.PENDING + ' pending</span>';

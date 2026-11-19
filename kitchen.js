@@ -10,6 +10,22 @@
 (function (root) {
   'use strict';
 
+  // Typed words that name an ingredient, on top of the words in its "name" (B02). Kept here, not in
+  // the data file, because they are about typing, not about weights. Each maps to exactly one
+  // ingredient id. A word that could mean several ingredients ("kosher salt") is deliberately left
+  // out, so the parser returns every candidate instead of picking one.
+  var WORDS = {
+    'flour': 'flour_ap', 'ap': 'flour_ap', 'ap flour': 'flour_ap', 'all purpose': 'flour_ap', 'plain flour': 'flour_ap',
+    'bread flour': 'flour_bread', 'strong flour': 'flour_bread',
+    'sugar': 'sugar_granulated', 'white sugar': 'sugar_granulated',
+    'brown sugar': 'sugar_brown',
+    'icing sugar': 'sugar_confectioners', 'powdered sugar': 'sugar_confectioners', 'confectioners sugar': 'sugar_confectioners',
+    'salt': 'salt_table', 'butter': 'butter', 'egg': 'egg_large'
+  };
+  // Author words that work on any ingredient with a convention label naming that author first
+  // ("King Arthur, spooned") or after a slash ("King Arthur / ATK").
+  var AUTHORS = { ka: /(^|\/ )King Arthur\b/, atk: /(^|\/ )(America's Test Kitchen|ATK)\b/, sally: /(^|\/ )Sally's\b/ };
+
   function create(data) {
     var VOL = {}, WT = {}, ING = {};
     data.volume_units_ml.forEach(function (u) { VOL[u.id] = u.ml; });
@@ -155,10 +171,27 @@
                ml: got, errorMl: got - ml, provisional: true };
     }
 
+    // Typed author words (B02). The ingredient's own "aliases" in the data file win; otherwise the
+    // word picks the convention whose label starts with that author's name. No match: null, and the
+    // parser reports the word as not understood.
+    function authorConvention(ingredientId, word) {
+      var ing = ingredient(ingredientId), w = String(word).toLowerCase();
+      if (ing.aliases && ing.aliases[w]) return ing.aliases[w];
+      var re = AUTHORS[w];
+      if (!re) return null;
+      for (var i = 0; i < ing.conventions.length; i++) {
+        var c = ing.conventions[i];
+        if (re.test(c.label)) return c.key || c.label;
+      }
+      return null;
+    }
+
     return {
       volumeMl: volumeMl, unitMl: unitMl, gramsPerMl: gramsPerMl, assumption: assumption,
       toGrams: toGrams, fromGrams: fromGrams, saltSwap: saltSwap, stickButter: stickButter,
-      measurable: measurable, cupSet: cupSet, ingredient: ingredient, data: data
+      measurable: measurable, cupSet: cupSet, ingredient: ingredient, data: data,
+      isWeight: isWeight, convention: convention, authorConvention: authorConvention,
+      WORDS: WORDS, AUTHORS: AUTHORS
     };
   }
 
