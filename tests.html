@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>kitchen-converter tests</title>
+<style>
+  :root { --paper: #f3f3ef; --ink: #1a1915; --mute: #66635a; --rule: #d6d4cb; --pass: #1d6b34; --fail: #b3261a; --pend: #8a5a00; }
+  @media (prefers-color-scheme: dark) { :root { --paper: #181714; --ink: #ece9df; --mute: #a39e90; --rule: #37352e; --pass: #6fd08c; --fail: #ff7a66; --pend: #f2c92e; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); background: var(--paper); color: var(--ink);
+    font: 16px/1.4 -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+  header { position: sticky; top: 0; z-index: 1; padding: 12px 14px; background: var(--paper); border-bottom: 2px solid var(--ink); }
+  h1 { margin: 0; font-size: 22px; }
+  #sum { margin: 4px 0 0; font-size: 18px; font-weight: 600; }
+  .pass { color: var(--pass); } .fail { color: var(--fail); } .pend { color: var(--pend); }
+  main { padding: 8px 14px 32px; max-width: 760px; margin: 0 auto; }
+  h2 { margin: 20px 0 6px; font-size: 16px; }
+  p, li { color: var(--mute); font-size: 14px; }
+  ul { padding-left: 20px; margin: 4px 0; }
+  .t { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .t .top { display: flex; gap: 8px; align-items: baseline; }
+  .t .st { flex: none; width: 64px; font-weight: 700; font-size: 13px; }
+  .t .id { flex: none; font-weight: 600; }
+  .t .in { font-weight: 500; }
+  .t dl { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 2px 8px; margin: 6px 0 0; font-size: 14px; }
+  .t dt { color: var(--mute); }
+  .t dd { margin: 0; overflow-wrap: anywhere; }
+  code { font: 13px/1.35 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  .t.ok dl { display: none; }
+  .t.ok.open dl { display: grid; }
+  .t.ok { cursor: pointer; }
+  #err { color: var(--fail); font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <h1>kitchen-converter tests</h1>
+  <p id="sum">Running…</p>
+</header>
+<main>
+  <p id="err"></p>
+  <section id="pendingBox" hidden><h2>Pending</h2><ul id="pending"></ul></section>
+  <h2>Offline caches this page can see</h2>
+  <p id="caches">Checking…</p>
+  <h2>Files</h2>
+  <p id="about"></p>
+  <h2>Every test</h2>
+  <p>Failures and pending tests show their details. Tap a passing test to see its details.</p>
+  <div id="list"></div>
+</main>
+
+<script src="core.js"></script>
+<script src="oven.js"></script>
+<script src="kitchen.js"></script>
+<script src="tests.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  // T08 phone test 4: if a cache named convert-… shows here, the two apps share caches.
+  if ('caches' in window) {
+    caches.keys().then(function (k) {
+      $('caches').textContent = k.length ? k.join(', ') : 'None yet. This app has no offline cache until its service worker is added (build step 3).';
+    }, function (e) { $('caches').textContent = 'Could not read caches: ' + e.message; });
+  } else {
+    $('caches').textContent = 'This browser does not offer caches here (it needs an https address).';
+  }
+
+  fetch('conversion-data.json', { cache: 'no-store' }).then(function (r) {
+    if (!r.ok) throw new Error('conversion-data.json: HTTP ' + r.status);
+    return r.json();
+  }).then(function (data) {
+    var env = { UC: UC, Oven: Oven, K: Kitchen.create(data) };
+    var results = KCTests.run(env), n = KCTests.count(results);
+    $('sum').innerHTML = results.length + ' tests: <span class="pass">' + n.PASS + ' pass</span> · <span class="fail">' + n.FAIL +
+      ' fail</span> · <span class="pend">' + n.PENDING + ' pending</span>';
+    $('about').textContent = 'Data as of ' + data.as_of + ': ' + data.ingredients.length + ' ingredients, ' +
+      data.known_answer_tests.length + ' data tests. Core copied from Fast_Conversion commit 46749ad. Opened ' + new Date().toLocaleString() + '.';
+
+    var pend = results.filter(function (r) { return r.status === 'PENDING'; });
+    if (pend.length) {
+      $('pendingBox').hidden = false;
+      $('pending').innerHTML = pend.map(function (r) { return '<li><b>' + esc(r.id) + '</b> ' + esc(r.input) + ': ' + esc(r.reason) + '</li>'; }).join('');
+    }
+
+    var order = { FAIL: 0, PENDING: 1, PASS: 2 };
+    results.sort(function (a, b) { return order[a.status] - order[b.status]; });
+    $('list').innerHTML = results.map(function (r) {
+      var cls = r.status === 'PASS' ? 'pass' : r.status === 'FAIL' ? 'fail' : 'pend';
+      return '<div class="t' + (r.status === 'PASS' ? ' ok' : '') + '">' +
+        '<div class="top"><span class="st ' + cls + '">' + r.status + '</span><span class="id">' + esc(r.id) + '</span><span class="in">' + esc(r.input) + '</span></div>' +
+        '<dl><dt>Expected</dt><dd>' + esc(r.expect) + '</dd><dt>Got</dt><dd>' + esc(r.got || '') + '</dd>' +
+        '<dt>Call</dt><dd><code>' + esc(r.call) + '</code></dd><dt>Source</dt><dd>' + esc(r.source) + '</dd>' +
+        (r.note ? '<dt>Note</dt><dd>' + esc(r.note) + '</dd>' : '') +
+        (r.reason ? '<dt>Waits on</dt><dd>' + esc(r.reason) + '</dd>' : '') + '</dl></div>';
+    }).join('');
+    $('list').addEventListener('click', function (e) { var t = e.target.closest('.t.ok'); if (t) t.classList.toggle('open'); });
+  }).catch(function (e) {
+    $('sum').textContent = 'Tests did not run';
+    $('err').textContent = e.message + '. Open this page from its web address (GitHub Pages), not as a file.';
+  });
+})();
+</script>
+</body>
+</html>
