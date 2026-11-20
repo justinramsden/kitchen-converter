@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#f2c92e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Kitchen converter · one field (trial)</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="one.css">
+</head>
+<body class="one">
+<header class="band" id="band">
+  <div class="qwrap">
+    <input id="q" class="line" type="text" inputmode="decimal" placeholder="Type a number"
+      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"
+      aria-label="Type a number, with letters for a unit if you like">
+    <input id="qa" class="line" type="text" inputmode="text" placeholder="Type a number"
+      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"
+      aria-label="Type a number, with letters for a unit if you like" hidden>
+  </div>
+  <div id="best" class="res" aria-live="polite"></div>
+</header>
+
+<main>
+  <div class="modebar" role="group" aria-label="How the tiles use the typed number">
+    <span>Tiles:</span>
+    <button type="button" data-mode="A">as pinned</button>
+    <button type="button" data-mode="B">most likely way</button>
+  </div>
+  <section id="tiles" class="tiles" aria-label="Pinned tiles"></section>
+  <h2 id="moreH" class="more-h" hidden>Other meanings</h2>
+  <section id="more" class="more" aria-label="Other meanings"></section>
+  <p class="hint">Type a number in the yellow box. Tap any row to make it the answer. Tap the big answer to copy it; long-press it, or a row, to pin it. Long-press a tile to unpin it. Letters narrow it down: <b>350 f</b>, <b>2 c</b>, <b>100 b</b>.</p>
+  <p class="hint">Trial screen. The current screen is still at <a href="./">the main address</a>.</p>
+  <p id="err" class="err" hidden></p>
+</main>
+
+<div id="fracbar" class="fracbar" hidden aria-label="Extra keys">
+  <button type="button" data-f="½">½</button><button type="button" data-f="¼">¼</button><button type="button" data-f="¾">¾</button><button type="button" data-f="⅓">⅓</button><button type="button" data-f="⅔">⅔</button><button type="button" data-f="⅛">⅛</button><button type="button" data-act="kb" class="key-kb" aria-label="Switch between number pad and letter keyboard">abc</button><button type="button" data-act="clear" aria-label="Clear the box">C</button>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="oven.js"></script>
+<script src="kitchen.js"></script>
+<script src="parse.js"></script>
+<script src="answer.js"></script>
+<script src="likely.js"></script>
+<script src="one.js"></script>
+</body>
+</html>

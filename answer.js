@@ -74,7 +74,29 @@
     function measurableText(vol, u, std) {
       var cs = stdFor(u, std), opts = { cupStandard: cs };
       if (/tbsp|tsp/.test(u)) opts.measures = SPOONS;
-      return K.measurable(vol, opts).text;
+      return mergeCups(K.measurable(vol, opts).parts);
+    }
+    // Display only (D01): whole cups and the cup part measures read as one mixed number, the way
+    // recipes print them. 1 cup + ½ cup + ¼ cup = 1¾ cups; 2 cups + ¼ cup + 2¾ tsp = 2¼ cups + 2¾ tsp.
+    // The amounts are K.measurable's, unchanged; only the wording joins.
+    var CUP_PART = { '1/2 cup': 1 / 2, '1/3 cup': 1 / 3, '1/4 cup': 1 / 4 };
+    var CUP_GLYPH = { '0.25': '¼', '0.333': '⅓', '0.5': '½', '0.75': '¾' };
+    function mergeCups(parts) {
+      var whole = 0, frac = [], rest = [];
+      parts.forEach(function (p) {
+        if (p.measure === 'cup') whole = p.count; else if (CUP_PART[p.measure]) frac.push(p); else rest.push(p.text);
+      });
+      if (!whole && !frac.length) return rest.join(' + ') || '0';
+      var sum = frac.reduce(function (a, p) { return a + CUP_PART[p.measure]; }, 0), glyph = CUP_GLYPH[String(+sum.toFixed(3))], extra = [];
+      if (!glyph && frac.length) { glyph = frac[0].text.split(' ')[0]; sum = CUP_PART[frac[0].measure]; extra = frac.slice(1).map(function (p) { return p.text; }); }
+      var lead = (whole ? String(whole) : '') + (glyph || '') + (whole + sum > 1 + 1e-9 ? ' cups' : ' cup');
+      return [lead].concat(extra, rest).join(' + ');
+    }
+    // Butter sticks (D01): whole, half and quarter sticks within 1% read as a fraction, else two decimals.
+    function stickText(x) {
+      var q = Math.round(x * 4) / 4;
+      if (q && Math.abs(x - q) <= 0.01 * x) return amountText(q) + (q <= 1 ? ' stick' : ' sticks');
+      return trim(x, 2) + ' sticks';
     }
     function unitWord(u, x) {
       var base = UNIT_SHOW[u] || (MEASURE_NAMES[u] || u);
@@ -179,6 +201,11 @@
         if (v == null) { out.warn = true; out.notes.push('Add an ingredient to turn a weight into cups or spoons.'); return; }
         var cl3 = cupLine(to, std); if (cl3 && out.assumption.indexOf(cl3) < 0) out.assumption.push(cl3);
         var x = v / unitMl(to, std);
+        if (to === 'stick') { // a stick is ½ US cup of butter, marked in 8 tbsp
+          if (ing && ing !== 'butter') { out.warn = true; out.notes.push('Sticks are for butter only.'); return; }
+          out.main = stickText(x); out.sub = trim(x * 8, 1) + ' tbsp';
+          return;
+        }
         if (to === 'ml' || to === 'l' || to === 'floz_us') { out.main = to === 'ml' ? ml(v) : trim(x, 2) + ' ' + UNIT_SHOW[to]; return; }
         out.main = measurableText(v, to, std);
         out.sub = x.toFixed(2) + ' ' + unitWord(to, x);

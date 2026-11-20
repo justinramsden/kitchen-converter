@@ -56,6 +56,7 @@
 <script src="kitchen.js"></script>
 <script src="parse.js"></script>
 <script src="answer.js"></script>
+<script src="likely.js"></script>
 <script src="tests.js"></script>
 <script>
 (function () {
@@ -76,7 +77,7 @@
     return r.json();
   }).then(function (data) {
     var env = { UC: UC, Oven: Oven, K: Kitchen.create(data) };
-    env.P = KParse.create(env.K); env.A = KAnswer.create(env.K, Oven, env.P);
+    env.P = KParse.create(env.K); env.A = KAnswer.create(env.K, Oven, env.P); env.L = KLikely.create(env.K, env.P, env.A);
     var results = KCTests.run(env), n = KCTests.count(results);
     $('sum').innerHTML = results.length + ' tests: <span class="pass">' + n.PASS + ' pass</span> · <span class="fail">' + n.FAIL +
       ' fail</span> · <span class="pend">' + n.PENDING + ' pending</span>';

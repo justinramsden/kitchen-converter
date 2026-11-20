@@ -275,12 +275,76 @@
     et('E26', '2 cups flour > g', '260 g', 'default pin 1', {}),
     et('E27', '350°F > °C', '180°C', 'default pin 2', {}),
     et('E28', '1 tbsp > mL', '14.8 mL', 'default pin 3', {}),
-    et('E29', '1 sticks butter > g', '113 g', 'default pin 4', {})
+    et('E29', '1 sticks butter > g', '113 g', 'default pin 4', {}),
+
+    // ── Added by D01: answers changed in answer.js. Values from the sources named; the wording is display only. ──
+    et('D1', '300 g butter > sticks', '2.65 sticks', 'usda_hg72: 113 g per ½ cup = 1 stick (I15); was shown in cups', { sub: '21.2 tbsp' }),
+    et('D2', '113 g butter > sticks', '1 stick', 'usda_hg72: 113 g per stick', { sub: '8 tbsp' }),
+    et('D3', '57 g butter > sticks', '½ stick', 'usda_hg72; whole, half and quarter sticks within 1% read as fractions', {}),
+    et('D4', '1 cup sugar > sticks', '', 'sticks are butter only', { notes: 'Sticks are for butter only', warn: true }),
+    et('D5', '350 g sugar', '1¾ cups', 'usda_hg72: 200 g per cup; 1 cup + ½ cup + ¼ cup now reads as one mixed number', { sub: '1.75 cups' }),
+    et('D6', '300 g flour', '2¼ cups + 2¾ tsp', 'milkstreet 130 g per cup; same measures as before, cups joined', { sub: '2.31 cups' }),
+    et('D7', '180 g sugar', '½ cup + ⅓ cup + 1 tbsp + ¼ tsp', 'usda_hg72; ½ + ⅓ cup has no single fraction, so it stays as two', {}),
+
+    // ── Added by D01: likely.js, what a typed line most likely means. Ranking rules are judgment (likely.js);
+    //    every number shown comes from the sources already tested above. Format "label = big answer". ──
+    lt('L1', '350', '350°F = 180°C', 'typical dial value (325–450°F) beats a weight; which_oven pair (O1)'),
+    lt('L2', '180', '180°C = 350°F', 'typical °C dial value; which_oven pair (O2)'),
+    lt('L3', '200', '200°C = 400°F', 'typical °C dial value beats 200 g; which_oven pair 200°C = 400°F'),
+    lt('L4', '300', '300 g flour = 2¼ cups + 2¾ tsp', '300°F is not a typical dial value, so the weight wins; milkstreet 130 g per cup'),
+    lt('L5', '2', '2 cups flour = 260 g', 'cups flour is the most common conversion; milkstreet (F1)'),
+    lt('L6', '½', '½ cup flour = 65 g', 'a typed fraction is never grams, mL or a temperature; milkstreet'),
+    lt('L7', '1 1/2', '1 1/2 cups flour = 195 g', 'mixed number with a slash; milkstreet'),
+    lt('L8', '350 f', '350°F = 180°C', 'one letter that starts a unit means that unit, not "flour"', { list: 1 }),
+    lt('L9', '2 f', '2 fl oz = 59.1 mL', '"f" is a unit letter; 2°F is not an oven setting, so fl oz; nist_hb44_c 29.57 mL'),
+    lt('L10', '2 s', '2 sticks butter = 226 g', '"s" is a unit letter (stick); usda_hg72'),
+    lt('L11', '2 su', '2 cups sugar = 400 g', 'two letters may name an ingredient; usda_hg72 200 g per cup'),
+    lt('L12', '100 b', '100 g butter = 0.88 sticks', '"b" starts no unit, so it may name an ingredient; usda_hg72'),
+    lt('L13', '2 c', '2 cups = 473 mL', 'exact reading (parser: c under 20 is cups); nist_hb44_c', { has: '2 cups flour = 260 g' }),
+    lt('L14', '180 c', '180°C = 350°F', 'exact reading (parser: c at 20 or more is °C)'),
+    lt('L15', '1 t', '1 tsp = 4.9 mL', 'exact reading (parser: small t is tsp); tbsp still listed', { has: '1 tbsp = 14.8 mL' }),
+    lt('L16', '2 c flour', '2 cups flour = 260 g', 'exact reading first; the same flour in ounces is listed, and "2 cups flour = 260 g" only once', { has: '2 cups flour = 9.2 oz', count: ['2 cups flour = 260 g', 1] }),
+    lt('L17', 'gas 4', 'gas 4 = 350°F · 180°C', 'exact reading; which_oven'),
+    lt('L18', '350°', '350°F = 180°C', 'a degree sign keeps only temperatures; 350°C is past the 290°C range', { list: 1 }),
+    lt('L19', '250 m', '250 mL = 1 cup + 2¾ tsp', '"m" is a unit letter (mL); nist_hb44_c'),
+    lt('L20', '200', '200 g flour = 1½ cups + 1⅞ tsp', 'after tapping "200 g flour" once for 200, it comes first for 200', { picks: { 'g flour>cup@200': 1, 'g flour>cup': 1 } }),
+    lt('L30', '20½', '20½ oz = 581 g', 'a typed fraction is never read as grams (else 20½ g flour would lead); nist oz 28.35 g'),
+    lt('L21', '350', '350°F = 180°C', 'a tap for 200 does not move 350', { picks: { 'g flour>cup@200': 1, 'g flour>cup': 1 } }),
+    { group: 'likely', id: 'L22', input: 'tile "# cups flour > g", 300, mode A (as pinned)', expect: '300 cups flour = 39000 g, plausibility 0',
+      source: 'Justin\'s version: the typed number goes into the tile as pinned', call: "H.tile('# cups flour > g', '300', 'A')", checks: [{ text: '300 cups flour = 39000 g · 0' }] },
+    { group: 'likely', id: 'L23', input: 'tile "# cups flour > g", 300, mode B (most likely way)', expect: '300 g flour = 2¼ cups + 2¾ tsp',
+      source: 'the reverse of the tile when the number fits it better', call: "H.tile('# cups flour > g', '300', 'B')", checks: [{ has: '300 g flour = 2¼ cups + 2¾ tsp' }] },
+    { group: 'likely', id: 'L24', input: 'tile "#°F > °C", 180, mode B', expect: '180°C = 350°F', source: 'which_oven (O2)',
+      call: "H.tile('#°F > °C', '180', 'B')", checks: [{ has: '180°C = 350°F' }] },
+    { group: 'likely', id: 'L25', input: 'tile "#°F > °C", 350, mode B', expect: '350°F = 180°C (pinned way kept)', source: 'which_oven (O1)',
+      call: "H.tile('#°F > °C', '350', 'B')", checks: [{ has: '350°F = 180°C' }] },
+    { group: 'likely', id: 'L26', input: 'tile "# sticks butter > g", 113, mode B', expect: '113 g butter = 1 stick', source: 'usda_hg72',
+      call: "H.tile('# sticks butter > g', '113', 'B')", checks: [{ has: '113 g butter = 1 stick' }] },
+    { group: 'likely', id: 'L27', input: 'tile "# tbsp > mL", 30, mode B', expect: '30 mL = 2 tbsp + ⅛ tsp', source: 'nist_hb44_c 14.79 mL per tbsp',
+      call: "H.tile('# tbsp > mL', '30', 'B')", checks: [{ has: '30 mL = 2 tbsp + ⅛ tsp' }] },
+    { group: 'likely', id: 'L28', input: 'reverse of three templates', expect: '# g flour ka > cups | # g kosher salt > tsp | none',
+      source: 'reverse keeps the typed ingredient and author words; gas has no reverse',
+      call: "[H.L.reverse('# cups flour ka > g'), H.L.reverse('# tsp kosher salt'), H.L.reverse('gas #') || 'none'].join(' | ')",
+      checks: [{ text: '# g flour ka > cups | # g kosher salt > tsp | none' }] },
+    { group: 'likely', id: 'L29', input: 'every template, filled with 2', expect: 'none has a word the parser does not know',
+      source: 'templates are typed lines, so the tested parser and answer code do all the work',
+      call: "H.L.TEMPLATES.filter(function (t) { return P.parse(P.fill(t[1], '2')).unknown.length; }).map(function (t) { return t[0]; }).join(', ') || 'none'",
+      checks: [{ text: 'none' }] }
   ]);
 
   function pt(id, line, want, why) {
     return { group: 'parse', id: id, input: line, expect: JSON.stringify(want), source: why,
              call: 'P.parse(' + JSON.stringify(line) + ')', checks: [{ sub: want }] };
+  }
+  function lt(id, line, top, source, more) { // D01: the big answer, and optionally the list
+    more = more || {};
+    var checks = [{ field: 'top', text: top }];
+    if (more.has) checks.push({ field: 'list', has: more.has });
+    if (more.list != null) checks.push({ field: 'n', eq: more.list });
+    if (more.count) checks.push({ field: 'list', count: more.count });
+    return { group: 'likely', id: id, input: line + (more.picks ? ' (after taps ' + JSON.stringify(more.picks) + ')' : ''),
+             expect: top + (more.has ? '; listed: ' + more.has : '') + (more.list != null ? '; ' + more.list + ' row(s)' : ''),
+             source: source, call: 'H.likely(' + JSON.stringify(line) + ', ' + JSON.stringify(more.picks || null) + ')', checks: checks };
   }
   function et(id, line, main, source, more) {
     var checks = [{ field: 'main', text: main }];
@@ -302,6 +366,17 @@
         return { main: a.main, sub: a.sub, assume: a.assumption.join(' | '), notes: a.notes.join(' | '),
                  alts: a.alts.map(function (x) { return x.name; }).join(', '), warn: a.warn };
       },
+      // D01: what likely.js puts first for a typed line, and every row ("label = answer")
+      likely: function (line, picks) {
+        var r = env.L.rank(line, { picks: picks || undefined });
+        var rows = r.list.map(function (c) { return c.label + ' = ' + c.answer.main; });
+        return { top: rows[0] || '', list: rows.join(' | '), n: rows.length };
+      },
+      tile: function (tpl, qty, mode) {
+        var t = env.L.tile(tpl, qty, mode);
+        return t.label + ' = ' + t.answer.main + (t.plaus === 0 ? ' · 0' : '');
+      },
+      L: env.L,
       SPOONS: ['tbsp', 'tsp', '1/2 tsp', '1/4 tsp', '1/8 tsp']
     };
   }
@@ -335,12 +410,13 @@
     else if ('dp' in c) { got = typeof v === 'number' ? v.toFixed(c.dp) : show(v); ok = got === c.want.toFixed(c.dp); }
     else if ('text' in c) { got = show(v); ok = norm(got) === norm(c.text); }
     else if ('has' in c) { got = show(v); ok = norm(got).indexOf(norm(c.has)) >= 0; }
+    else if ('count' in c) { got = show(v); ok = norm(got).split(norm(c.count[0])).length - 1 === c.count[1]; got = '"' + c.count[0] + '" ×' + (norm(got).split(norm(c.count[0])).length - 1); }
     else if ('sub' in c) { var miss = subset(c.sub, v); ok = !miss.length; got = ok ? 'all fields match' : miss.join('; '); }
     else { got = show(v); ok = v === c.eq; }
     return { ok: ok, got: (c.field ? c.field + ' ' : '') + got };
   }
 
-  // env: { K, UC, Oven, P, A }. opts.groups: run only these groups.
+  // env: { K, UC, Oven, P, A, L }. opts.groups: run only these groups.
   function run(env, opts) {
     opts = opts || {};
     var H = helpers(env);
@@ -376,6 +452,7 @@
     };
     env.P = require(path.join(dir, 'parse.js')).create(env.K);
     env.A = require(path.join(dir, 'answer.js')).create(env.K, env.Oven, env.P);
+    env.L = require(path.join(dir, 'likely.js')).create(env.K, env.P, env.A);
     var results = run(env);
     results.forEach(function (r) {
       console.log((r.status + '   ').slice(0, 8) + (r.id + '    ').slice(0, 5) + r.input + '  |  expect ' + r.expect + '  |  got ' + r.got + (r.reason ? '  |  ' + r.reason : ''));
