@@ -147,13 +147,31 @@
       if (bar.hidden) return;
       if (vv) { bar.style.bottom = 'auto'; bar.style.top = (vv.offsetTop + vv.height - bar.offsetHeight) + 'px'; }
     }
+    // A pinned row being typed in moves to the top of what is visible, so the keyboard and this bar
+    // never cover its field or result. The extra bottom room (body.typing) lets even the last row get there.
+    var liftRow = null;
+    function lift() {
+      if (!liftRow) return;
+      var top = liftRow.getBoundingClientRect().top - (vv ? vv.offsetTop : 0);
+      if (Math.abs(top - 8) > 2) window.scrollTo(0, window.scrollY + top - 8);
+    }
     document.addEventListener('focusin', function (e) {
       var t = e.target;
       if (t.tagName !== 'INPUT') return;
-      field = t; clearTimeout(hideTimer); bar.hidden = false; place();
+      field = t; clearTimeout(hideTimer); bar.hidden = false;
+      liftRow = t.closest('.pin');
+      document.body.classList.toggle('typing', !!liftRow);
+      lift(); setTimeout(lift, 350); // again once the keyboard has finished opening
+      place();
     });
-    document.addEventListener('focusout', function () { hideTimer = setTimeout(function () { bar.hidden = true; }, 150); });
-    if (vv) { vv.addEventListener('resize', place); vv.addEventListener('scroll', place); }
+    document.addEventListener('focusout', function () {
+      hideTimer = setTimeout(function () { bar.hidden = true; liftRow = null; document.body.classList.remove('typing'); }, 150);
+    });
+    if (vv) {
+      var lastH = vv.height;
+      vv.addEventListener('resize', function () { place(); if (vv.height < lastH) lift(); lastH = vv.height; });
+      vv.addEventListener('scroll', place);
+    }
     function insert(b) {
       if (!field) return;
       var s = field.selectionStart == null ? field.value.length : field.selectionStart, en = field.selectionEnd == null ? s : field.selectionEnd;
